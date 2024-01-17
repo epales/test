@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<th:block th:replace=" ~{layout/header :: headFragment}"></th:block>
+<body>
+<form class=""  action="/api/markets/categories" method="post">
+    <div id = 'main'>
+        <select name="categories" id="lang">
+            <option th:each="res : ${result.Categories}" th:value="${res.Code}"><p th:text=${res.CodeName}></p></option>
+        </select>
+    </div>
+    <button>API 통신</button>
+</form>
+<form class=""  action="/api/save" method="post">
+    <div style="padding: 5px; border-color: black;">
+        <select name="code" id="lang">
+            <option value ="경이로운 명예의 돌파석">경이로운 명예의 돌파석</option> 
+            <option value ="찬란한 명예의 돌파석">찬란한 명예의 돌파석</option>
+            <option value ="정제된 파괴강석">정제된 파괴강석</option> 
+            <option value ="정제된 수호강석">정제된 수호강석</option> 
+        </select>
+    </div>
+    <button>조회 할 아이템</button>
+</form> 
+<!-- 
+    <div>
+        <h3>카테고리 코드 값 출력</h3>
+        <ul th:each="res:${result.Categories}">
+            <li><span th:text="${res.CodeName}"></span></li>
+            <li><span th:text="${res.Code}"></span></li>
+        </ul>
+    </div> -->
+    
+</body>
+<th:block th:replace="/layout/footer.html :: footerFragment"></th:block>
+</html>

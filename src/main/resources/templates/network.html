@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network</title>
+</head>
+<script>
+    
+</script>
+<body>
+    <p>경매장 아이템 정보</p>
+    <div class="" style="background-color: blue; size: full;">
+        <ul style=" list-style: none; margin-right:5px; padding: 10px; background-color:black;
+        color: white;" th:each="res : ${result}">
+            <li><p>아이템 코드 :    <span th:text ="${res.Id}"></span></p></li>
+            <li><p>아이템 이름 :    <span th:text = "${res.Name}"></span></p></li>
+            <li><p>등급  :          <span th:text = "${res.Grade}"></span></p></li>
+            <li><img th:src="${res.Icon}"></img></li>
+            <li><p>최저가 :         <span th:text ="${res.CurrentMinPrice}"></span></p></li>
+        </ul>
+    </div>
+</body>
+</html>
