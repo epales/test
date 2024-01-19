@@ -55,7 +55,6 @@ public class marketController {
         JSONArray result = itemService.getMarketOneItems(LostarkApiKey,50000, Name);
         if(result != null){
             result.forEach((data) -> {
-                System.out.println(((JSONObject ) data).get("CurrentMinPrice").toString());
                 ItemsDto itemsDto = new ItemsDto((JSONObject) data);
                 itemService.save(itemsDto);
             });

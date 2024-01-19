@@ -19,16 +19,20 @@ public class ItemsDto {
 
     public int currentMinPrice;
 
+    public String icon;
     public ItemsDto(JSONObject object){
         this.code = Integer.parseInt(object.get("Id").toString());
         this.name = object.get("Name").toString();
         this.currentMinPrice = Integer.parseInt(object.get("CurrentMinPrice").toString());
+        this.icon = object.get("Icon").toString();
     }
+    
     public Items toEntity() {
 		return Items.builder()
 			.code(code)
 			.name(name)
             .currentMinPrice(currentMinPrice)
+            .icon(icon)
 			.build();
 	}
 }

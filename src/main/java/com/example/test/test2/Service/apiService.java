@@ -78,8 +78,8 @@ public class apiService{
 				}
                 System.out.println("\n" + pageNo +"\n");
                 Thread.sleep(500);
-
 			}
+            
 			httpURLConnection.disconnect();
 
 			return jsonArray;
@@ -128,6 +128,7 @@ public class apiService{
             JSONParser parser = new JSONParser();
             JSONObject object = (JSONObject) parser.parse(inputStreamReader);
             httpURLConnection.disconnect();
+
             return object;
         } catch (MalformedURLException e) {
 			throw new RuntimeException(e);
@@ -162,7 +163,7 @@ public class apiService{
 			JSONParser parser = new JSONParser();
 			JSONObject object = (JSONObject) parser.parse(inputStreamReader);
 			httpURLConnection.disconnect();
-            System.out.println(object.get("Categories"));
+
 			return object;
 		} catch (MalformedURLException e) {
 			throw new RuntimeException(e);

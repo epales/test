@@ -9,6 +9,8 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -34,6 +36,12 @@ public class itemService {
 		Items itemsEntity = itemsRepository.save(itemsDto.toEntity());
 		return itemsEntity;
 	}
+
+    public List<Items> getDatabase(){
+        List<Items> itemsEntity = new ArrayList<Items>();
+        itemsEntity = itemsRepository.findAll();
+        return itemsEntity;
+    }
 
     public JSONArray getMarketOneItems(String LostarkApiKey,int CategoryCode, String Name){
         try{

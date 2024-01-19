@@ -21,4 +21,5 @@ public class Items {
 
     public int currentMinPrice;
 
+    public String icon;
 }
