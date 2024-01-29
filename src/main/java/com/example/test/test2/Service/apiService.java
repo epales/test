@@ -26,7 +26,7 @@ public class apiService{
     public JSONArray getMarketAllItems(String LostarkApiKey, int CategoryCode) throws InterruptedException{
         try{
             URL url = new URL("https://developer-lostark.game.onstove.com/markets/items/");
-            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection(); // ���� ����
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setRequestProperty("authorization", "Bearer "+LostarkApiKey);
             httpURLConnection.setRequestProperty("accept","application/json");

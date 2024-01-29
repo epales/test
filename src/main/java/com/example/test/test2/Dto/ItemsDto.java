@@ -20,11 +20,18 @@ public class ItemsDto {
     public int currentMinPrice;
 
     public String icon;
+
+    public int categoriesCode;
+
+    public String grade;
+
     public ItemsDto(JSONObject object){
         this.code = Integer.parseInt(object.get("Id").toString());
         this.name = object.get("Name").toString();
         this.currentMinPrice = Integer.parseInt(object.get("CurrentMinPrice").toString());
         this.icon = object.get("Icon").toString();
+        this.categoriesCode = Integer.parseInt(object.get("categoryCode").toString());
+        this.grade = object.get("Grade").toString();
     }
     
     public Items toEntity() {
@@ -33,6 +40,8 @@ public class ItemsDto {
 			.name(name)
             .currentMinPrice(currentMinPrice)
             .icon(icon)
+            .categoriesCode(categoriesCode)
+            .grade(grade)
 			.build();
 	}
 }

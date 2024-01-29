@@ -22,4 +22,8 @@ public class Items {
     public int currentMinPrice;
 
     public String icon;
+
+    public int categoriesCode;
+
+    public String grade;
 }
