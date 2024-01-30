@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <th:block th:replace=" ~{layout/header :: headFragment}"></th:block>
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인</title>
+</head>
+<script type="text/javascript">
+</script>
 <body>
-    <script type="text/javascript">
-
-    </script>
     <div>
         <button onclick="location.href='/stone'">돌 깎으러가기</button>
     </div>
-    <form class=""  action="/api/markets/categories" method="post">
-        <div id = 'main'>
-            <select name="categories" id="lang">
-                <option th:each="res : ${result.Categories}" th:value="${res.Code}"><p th:text=${res.CodeName}></p></option>
-            </select>
-        </div>
-        <button>API 통신</button>
-    </form>
+    <br>
+    <div id = 'main'>
+        <select name="categories" id="lang">
+            <option th:each="res : ${result.Categories}" th:value="${res.Code}"><p th:text=${res.CodeName}></p></option>
+        </select>
+    </div>
+    <br/>
     <th:block th:if="${data != null}">
         <table>
             <thead>
@@ -32,4 +33,3 @@
     </th:block>
 </body>
 <th:block th:replace="~{layout/footer :: footerFragment}"></th:block>
-</html>
