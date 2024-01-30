@@ -26,22 +26,21 @@ public class pageController{
     public String moveIndex(Model model) {
         JSONObject result = apiService.GetMarketsOptions(LostarkApiKey);
         List<Items> data = itemService.getDatabase();
-        
+
         if(result != null)
         model.addAttribute("result", result);
-        if(!data.isEmpty()){
+
         model.addAttribute("data", data);
-        }
-        return "/index";
-    }
-    
-    @PostMapping("/")
-    public String returnIndex(Model model) {
-        JSONObject result = apiService.GetMarketsOptions(LostarkApiKey);
-        model.addAttribute("result", result);
+
         return "/index";
     }
 
+    @GetMapping("/stone")
+    public String moveStone(){
+        
+        return "/stone";
+    }
+   
     @GetMapping("/network")
     public String moveNetwork() {
         

@@ -11,6 +11,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -37,10 +38,20 @@ public class itemService {
 		return itemsEntity;
 	}
 
+    public int getCategoryCode(String id){
+        Optional<Items> itemsEntity = itemsRepository.findByName(id);
+        int code = itemsEntity.get().getCode();
+        return code;
+    }
     public List<Items> getDatabase(){
         List<Items> itemsEntity = new ArrayList<Items>();
         itemsEntity = itemsRepository.findAll();
         return itemsEntity;
+    }
+
+    public int getDatabaseCount(){
+        long count = itemsRepository.count();
+        return (int) count;
     }
 
     public JSONArray getMarketOneItems(String LostarkApiKey,int CategoryCode, String Name){
@@ -56,12 +67,11 @@ public class itemService {
             
             // 수신 데이터 변수 설정
 			String parameter = "{\n"
-            + "  \"Sort\": \"Grade\",\n"
+            + "  \"Sort\": \"Id\",\n"
             + "  \"CategoryCode\": "+CategoryCode+",\n"
             + "  \"ItemName\": \""+Name+"\",\n"
-            + "  \"SortCondition\": \"DESC\"\n"
+            + "  \"SortCondition\": \"ASC\"\n"
             + "}";
-            System.out.println(parameter);
             byte[] out = parameter.getBytes(StandardCharsets.UTF_8);
 
             OutputStream stream = httpURLConnection.getOutputStream();
@@ -86,11 +96,26 @@ public class itemService {
             JSONObject object = (JSONObject) parser.parse(inputStreamReader);
             JSONArray resultJsonArray = (JSONArray) object.get("Items");
             
+            JSONObject jsonObject = new JSONObject();
+
+            resultJsonArray.forEach((data) -> {
+            
+                jsonObject.put("Id", ((JSONObject) data).get("Id"));
+                jsonObject.put("Name", ((JSONObject) data).get("Name").toString());
+                jsonObject.put("CurrentMinPrice", ((JSONObject) data).get("CurrentMinPrice").toString());
+                jsonObject.put("Icon",((JSONObject) data).get("Icon").toString());
+                jsonObject.put("categoryCode", CategoryCode);
+                jsonObject.put("Grade",((JSONObject) data).get("Grade").toString());
+            });
+
+            JSONArray req_array = new JSONArray();
+
+            req_array.add(jsonObject);
             // 연결 종료
 			httpURLConnection.disconnect();
 
             // JSONArray 반환
-			return resultJsonArray;
+			return req_array;
 
         } catch (MalformedURLException e) {
 			throw new RuntimeException(e);

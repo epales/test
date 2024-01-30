@@ -4,12 +4,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.test.test2.Domain.Items;
 import com.example.test.test2.Dto.ItemsDto;
 import com.example.test.test2.Service.apiService;
 import com.example.test.test2.Service.itemService;
@@ -43,22 +40,24 @@ public class marketController {
     @PostMapping(value = "/api/markets/item")
     public String marketItem(@RequestParam (value ="code")String Name, Model model) throws InterruptedException{
         JSONArray result = itemService.getMarketOneItems(LostarkApiKey,50000, Name);
-        //System.out.println(result);
-        
+       
         model.addAttribute("result", result);
         
         return "/network";
     }
     
 	@PostMapping("/api/save")
-	public String SaveCode(@RequestParam (value ="code")String Name) {
-        JSONArray result = itemService.getMarketOneItems(LostarkApiKey,50000, Name);
+	public String SaveCode(@RequestParam (value ="code")String Code, Model model) throws InterruptedException{
+        int alpha = itemService.getCategoryCode(Code);
+        int Co = alpha;
+        JSONArray result = itemService.getMarketOneItems(LostarkApiKey, alpha, Code);
         if(result != null){
             result.forEach((data) -> {
                 ItemsDto itemsDto = new ItemsDto((JSONObject) data);
+                itemsDto.setCategoriesCode(Co);
                 itemService.save(itemsDto);
             });
         }
-		return "redirect:/";
+		return "/";
 	}
 }

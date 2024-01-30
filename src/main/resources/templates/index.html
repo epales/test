@@ -1,49 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <th:block th:replace=" ~{layout/header :: headFragment}"></th:block>
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인</title>
+</head>
+<script type="text/javascript">
+</script>
 <body>
-    <script type="text/javascript"> 
-        function update (){
-            alert('DB 업데이트 완료');
-        }
-    </script>
-<form class=""  action="/api/markets/categories" method="post">
+    <div>
+        <button onclick="location.href='/stone'">돌 깎으러가기</button>
+    </div>
+    <br>
     <div id = 'main'>
         <select name="categories" id="lang">
             <option th:each="res : ${result.Categories}" th:value="${res.Code}"><p th:text=${res.CodeName}></p></option>
         </select>
     </div>
-    <button>API 통신</button>
-</form>
-<form class=""  action="/api/save" method="post">
-    <div style="padding: 5px; border-color: black;">
-        <select name="code" id="lang">
-            <option value ="경이로운 명예의 돌파석">경이로운 명예의 돌파석</option> 
-            <option value ="찬란한 명예의 돌파석">찬란한 명예의 돌파석</option>
-            <option value ="정제된 파괴강석">정제된 파괴강석</option> 
-            <option value ="정제된 수호강석">정제된 수호강석</option> 
-            <option value ="최상급 오레하 융화 재료">최상급 오레하 융화 재료</option>
-            <option value ="명예의 파편 주머니(소)">명예의 파편 주머니(소)</option>
-            <option value ="명예의 파편 주머니(중)">명예의 파편 주머니(중)</option>
-            <option value ="명예의 파편 주머니(대)">명예의 파편 주머니(대)</option>
-            <option value ="태양의 가호">태양의 가호</option>
-            <option value ="태양의 축복">태양의 축복</option>
-            <option value ="태양의 은총">태양의 은총</option>
-        </select>
-    </div>
-    <button id="join" onclick="update()">조회 할 아이템</button>
-</form> 
-<th:block th:if="${data != null}">
-    <div>
-        <h3>DB 데이터 출력</h3>
-        <ul th:each="item:${data}" style="list-style: none;">
-            <li style="margin-left: 3%;"><img th:src="${item.icon}"></li>
-            <li><span th:text="${item.name}"></span> : <span th:text="${item.CurrentMinPrice}"></span></li>
-        </ul>
-    </div>
-</th:block>
+    <br/>
+    <th:block th:if="${data != null}">
+        <table>
+            <thead>
+                
+            </thead>
+            <tbody th:each="item:${data}" >
+                <td style="text-align: center; display: flex; align-items: center;">
+                    <img th:src="${item.icon}"/>&nbsp;<span th:text="${item.name}"></span> : <span th:text="${item.CurrentMinPrice}"></span>
+                </td>
+            </tbody>
+        </table>
+    </th:block>
 </body>
 <th:block th:replace="~{layout/footer :: footerFragment}"></th:block>
-</html>
