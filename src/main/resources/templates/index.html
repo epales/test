@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인</title>
 </head>
+<link rel="stylesheet" href="css/main.css">
 <script type="text/javascript">
 </script>
 <body>
@@ -22,12 +23,14 @@
     <th:block th:if="${data != null}">
         <table>
             <thead>
-                
+                <h2>DB 데이터 목록</h2>
             </thead>
-            <tbody th:each="item:${data}" >
-                <td style="text-align: center; display: flex; align-items: center;">
-                    <img th:src="${item.icon}"/>&nbsp;<span th:text="${item.name}"></span> : <span th:text="${item.CurrentMinPrice}"></span>
-                </td>
+            <tbody id = "body" th:each="item:${data}" >
+                <tr>
+                    <td id = "itemBox">
+                        <img th:src="${item.icon}"/>&nbsp;<span th:text="${item.name}"></span> : <span th:text="${item.CurrentMinPrice}"></span>
+                    </td>
+                <tr>
             </tbody>
         </table>
     </th:block>

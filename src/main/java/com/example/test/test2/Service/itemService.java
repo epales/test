@@ -32,61 +32,62 @@ public class itemService {
 
     private final ItemsRepository itemsRepository;
 
-	@Transactional
-	public Items save(ItemsDto itemsDto){
-		Items itemsEntity = itemsRepository.save(itemsDto.toEntity());
-		return itemsEntity;
-	}
+    @Transactional
+    public Items save(ItemsDto itemsDto) {
+        Items itemsEntity = itemsRepository.save(itemsDto.toEntity());
+        return itemsEntity;
+    }
 
-    public int getCategoryCode(String id){
+    public int getCategoryCode(String id) {
         Optional<Items> itemsEntity = itemsRepository.findByName(id);
         int code = itemsEntity.get().getCode();
         return code;
     }
-    public List<Items> getDatabase(){
+
+    public List<Items> getDatabase() {
         List<Items> itemsEntity = new ArrayList<Items>();
         itemsEntity = itemsRepository.findAll();
         return itemsEntity;
     }
 
-    public int getDatabaseCount(){
+    public int getDatabaseCount() {
         long count = itemsRepository.count();
         return (int) count;
     }
 
-    public JSONArray getMarketOneItems(String LostarkApiKey,int CategoryCode, String Name){
-        try{
-            // API 통신 
+    public JSONArray getMarketOneItems(String LostarkApiKey, int Id, int CategoryCode, String Name, String Grade) {
+        try {
+            // API 통신
             URL url = new URL("https://developer-lostark.game.onstove.com/markets/items");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection(); // 서버 연결
             httpURLConnection.setRequestMethod("POST");
-            httpURLConnection.setRequestProperty("authorization", "Bearer "+LostarkApiKey);
-            httpURLConnection.setRequestProperty("accept","application/json");
-            httpURLConnection.setRequestProperty("content-Type","application/json");
+            httpURLConnection.setRequestProperty("authorization", "Bearer " + LostarkApiKey);
+            httpURLConnection.setRequestProperty("accept", "application/json");
+            httpURLConnection.setRequestProperty("content-Type", "application/json");
             httpURLConnection.setDoOutput(true);
-            
-            // 수신 데이터 변수 설정
-			String parameter = "{\n"
-            + "  \"Sort\": \"Id\",\n"
-            + "  \"CategoryCode\": "+CategoryCode+",\n"
-            + "  \"ItemName\": \""+Name+"\",\n"
-            + "  \"SortCondition\": \"ASC\"\n"
-            + "}";
-            byte[] out = parameter.getBytes(StandardCharsets.UTF_8);
 
+            // 수신 데이터 변수 설정
+            String parameter = "{\n"
+                    + "  \"Sort\": \"CURRENT_MIN_PRICE\",\n"
+                    + "  \"CategoryCode\": " + CategoryCode + ",\n"
+                    + "  \"ItemGrade\": \"" + Grade + "\",\n"
+                    + "  \"ItemName\": \"" + Name + "\",\n"
+                    + "  \"SortCondition\": \"DESC\"\n"
+                    + "}";
+            byte[] out = parameter.getBytes(StandardCharsets.UTF_8);
             OutputStream stream = httpURLConnection.getOutputStream();
             stream.write(out);
 
             int result = httpURLConnection.getResponseCode();
 
             InputStream inputStream;
-            
-            if(result == 200) {
+
+            if (result == 200) {
                 inputStream = httpURLConnection.getInputStream();
             } else {
                 inputStream = httpURLConnection.getErrorStream();
             }
-            if(inputStream == null){
+            if (inputStream == null) {
                 return null;
             }
             // 데이터 UTF-8 로 수신하여 한글 깨짐 방지
@@ -95,36 +96,36 @@ public class itemService {
             JSONParser parser = new JSONParser();
             JSONObject object = (JSONObject) parser.parse(inputStreamReader);
             JSONArray resultJsonArray = (JSONArray) object.get("Items");
-            
+
             JSONObject jsonObject = new JSONObject();
 
             resultJsonArray.forEach((data) -> {
-            
+
                 jsonObject.put("Id", ((JSONObject) data).get("Id"));
                 jsonObject.put("Name", ((JSONObject) data).get("Name").toString());
                 jsonObject.put("CurrentMinPrice", ((JSONObject) data).get("CurrentMinPrice").toString());
-                jsonObject.put("Icon",((JSONObject) data).get("Icon").toString());
+                jsonObject.put("Icon", ((JSONObject) data).get("Icon").toString());
                 jsonObject.put("categoryCode", CategoryCode);
-                jsonObject.put("Grade",((JSONObject) data).get("Grade").toString());
+                jsonObject.put("Grade", ((JSONObject) data).get("Grade").toString());
             });
 
             JSONArray req_array = new JSONArray();
 
             req_array.add(jsonObject);
             // 연결 종료
-			httpURLConnection.disconnect();
+            httpURLConnection.disconnect();
 
             // JSONArray 반환
-			return req_array;
+            return req_array;
 
         } catch (MalformedURLException e) {
-			throw new RuntimeException(e);
-		} catch (ProtocolException e) {
-			throw new RuntimeException(e);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (ParseException e) {
-			throw new RuntimeException(e);
-		}
+            throw new RuntimeException(e);
+        } catch (ProtocolException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

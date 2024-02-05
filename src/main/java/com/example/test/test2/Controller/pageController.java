@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class pageController{
+public class pageController {
 
     private final itemService itemService;
     private final apiService apiService;
@@ -27,8 +27,8 @@ public class pageController{
         JSONObject result = apiService.GetMarketsOptions(LostarkApiKey);
         List<Items> data = itemService.getDatabase();
 
-        if(result != null)
-        model.addAttribute("result", result);
+        if (result != null)
+            model.addAttribute("result", result);
 
         model.addAttribute("data", data);
 
@@ -36,16 +36,15 @@ public class pageController{
     }
 
     @GetMapping("/stone")
-    public String moveStone(){
-        
+    public String moveStone() {
+
         return "/stone";
     }
-   
+
     @GetMapping("/network")
     public String moveNetwork() {
-        
+
         return "network";
     }
-    
-}
 
+}

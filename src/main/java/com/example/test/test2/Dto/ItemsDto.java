@@ -11,10 +11,10 @@ import lombok.Data;
 @Data
 @Entity
 public class ItemsDto {
-    
-    public int code;
 
     @Id
+    public int code;
+
     public String name;
 
     public int currentMinPrice;
@@ -25,7 +25,7 @@ public class ItemsDto {
 
     public String grade;
 
-    public ItemsDto(JSONObject object){
+    public ItemsDto(JSONObject object) {
         this.code = Integer.parseInt(object.get("Id").toString());
         this.name = object.get("Name").toString();
         this.currentMinPrice = Integer.parseInt(object.get("CurrentMinPrice").toString());
@@ -33,15 +33,15 @@ public class ItemsDto {
         this.categoriesCode = Integer.parseInt(object.get("categoryCode").toString());
         this.grade = object.get("Grade").toString();
     }
-    
+
     public Items toEntity() {
-		return Items.builder()
-			.code(code)
-			.name(name)
-            .currentMinPrice(currentMinPrice)
-            .icon(icon)
-            .categoriesCode(categoriesCode)
-            .grade(grade)
-			.build();
-	}
+        return Items.builder()
+                .code(code)
+                .name(name)
+                .currentMinPrice(currentMinPrice)
+                .icon(icon)
+                .categoriesCode(categoriesCode)
+                .grade(grade)
+                .build();
+    }
 }

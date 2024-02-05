@@ -1,5 +1,7 @@
 package com.example.test.test2.Service;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.json.simple.JSONArray;
@@ -30,17 +32,25 @@ public class scheduleService {
 
         for (int i = 0; i < count; i++) {
             String name = itemList.get(i).name;
+            int id = itemList.get(i).code;
             int code = itemList.get(i).categoriesCode;
-            JSONArray resultJsonArray = itemService.getMarketOneItems(LostarkApiKey, code, name);
+            String grade = itemList.get(i).grade;
+
+            JSONArray resultJsonArray = itemService.getMarketOneItems(LostarkApiKey, id, code, name, grade);
 
             if (resultJsonArray != null) {
                 resultJsonArray.forEach((data) -> {
+                    System.out.println(data);
                     ItemsDto itemsDto = new ItemsDto((JSONObject) data);
                     itemService.save(itemsDto);
                 });
             }
         }
 
+        LocalTime now = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH: mm: ss");
+        String formatedNow = now.format(formatter);
+        System.out.println(formatedNow);
         System.out.println("DB 업데이트 스케줄러 작동 완료");
     }
 }
