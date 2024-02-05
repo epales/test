@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class Items {
-    
-    public int code;
 
     @Id
+    public int code;
+
     public String name;
 
     public int currentMinPrice;

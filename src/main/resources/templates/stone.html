@@ -6,118 +6,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>돌 깎는 노인</title>
+    <style>
+        button{ margin-right: 3px;}
+    </style>
 </head>
 <body>
+    <div class="successPercent">
+        <p>세공확률 : <span class="percentage"></span></p>
+    </div>
     <div class="ability1Set">
     </div>
     <div class="ability2Set">
     </div>
     <div class="ability3Set">
     </div>
+    <div class="reset">
+    </div>
 </body>
-<script type="text/javascript">
-    function success1() {
-        var abil = document.getElementsByClassName("abil1");
-        if (firstStoneCount < 10) {
-            abil.item(firstStoneCount).src = "img/Blue.png";
-            firstStoneCount++;
-        }
-    }
-    function success2() {
-        var abil = document.getElementsByClassName("abil2");
-        if (secondStoneCount < 10) {
-            abil.item(secondStoneCount).src = "img/Blue.png";
-            secondStoneCount++;
-        }
-    }
-    function success3() {
-        var abil = document.getElementsByClassName("minusAbility");
-        if (thirdStoneCount < 10) {
-            abil.item(thirdStoneCount).src = "img/Red.png";
-            thirdStoneCount++;
-        }
-    }
-    function fail1() {
-        var abil = document.getElementsByClassName("abil1");
-        if(firstStoneCount < 10){
-            abil.item(firstStoneCount).src = "img/Gray.png";
-            firstStoneCount++;
-        }
-    }
-    function fail2() {
-        var abil = document.getElementsByClassName("abil2");
-        if (secondStoneCount < 10) {
-            abil.item(secondStoneCount).src = "img/Gray.png";
-            secondStoneCount++;
-        }
-    }
-    function fail3() {
-        var abil = document.getElementsByClassName("minusAbility");
-        if (thirdStoneCount < 10) {
-            abil.item(thirdStoneCount).src = "img/Gray.png";
-            thirdStoneCount++;
-        }
-    }
-    const ability1Set = document.querySelector('.ability1Set');
-    const ability2Set = document.querySelector('.ability2Set');
-    const ability3Set = document.querySelector('.ability3Set');
-
-    for (let i = 1; i < 11; i++) {
-        const img = new Image();
-        img.src = 'img/White.png';
-        img.className = 'abil1' ;
-        img.style = 'width:20px; height:20px;';
-        ability1Set.appendChild(img);
-    }
-    for (let i = 1; i < 11; i++) {
-        const img = new Image();
-        img.src = 'img/White.png';
-        img.className = 'abil2';
-        img.style = 'width:20px; height:20px;';
-        ability2Set.appendChild(img);
-    }
-    for (let i = 1; i < 11; i++) {
-        const img = new Image();
-        img.src = 'img/White.png';
-        img.className = 'minusAbility';
-        img.style = 'width:20px; height:20px;';
-        ability3Set.appendChild(img);
-    }
-    
-    const button1 = document.createElement('button');
-    const button2 = document.createElement('button');
-    const button3 = document.createElement('button');
-    const button4 = document.createElement('button');
-    const button5 = document.createElement('button');
-    const button6 = document.createElement('button');
-
-    var firstStoneCount = 0;
-    var secondStoneCount = 0;
-    var thirdStoneCount = 0;
-
-    button1.onclick = success1;
-    button1.innerHTML = '성공';
-    ability1Set.appendChild(button1);
-
-    button2.onclick = fail1;
-    button2.innerHTML = '실패';
-    ability1Set.appendChild(button2);
-
-    button3.onclick = success2;
-    button3.innerHTML = '성공';
-    ability2Set.appendChild(button3);
-
-    button4.onclick = fail2;
-    button4.innerHTML = '실패';
-    ability2Set.appendChild(button4);
-
-    button5.onclick = success3;
-    button5.innerHTML = '성공';
-    ability3Set.appendChild(button5);
-
-    button6.onclick = fail3;
-    button6.innerHTML = '실패';
-    ability3Set.appendChild(button6);
+<script type="text/javascript" src="/js/selfCraft.js">
 
 </script>
 <th:block th:replace="~{layout/footer :: footerFragment}"></th:block>
