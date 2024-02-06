@@ -6,9 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.test.test2.Domain.Items;
 
-
-public interface ItemsRepository extends JpaRepository<Items, String>{
+public interface ItemsRepository extends JpaRepository<Items, Integer> {
 
     Optional<Items> findByName(String id);
 
-} 
+}

@@ -11,15 +11,8 @@
 </script>
 <body>
     <div>
-        <button onclick="location.href='/stone'">돌 깎으러가기</button>
+        <button onclick="location.href='/stone'">돌 깎으러가기</button> <button onclick="location.href ='/'">새로고침</button>
     </div>
-    <br>
-    <div id = 'main'>
-        <select name="categories" id="lang">
-            <option th:each="res : ${result.Categories}" th:value="${res.Code}"><p th:text=${res.CodeName}></p></option>
-        </select>
-    </div>
-    <br/>
     <th:block th:if="${data != null}">
         <table>
             <thead>

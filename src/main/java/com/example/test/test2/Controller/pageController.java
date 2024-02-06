@@ -24,11 +24,7 @@ public class pageController {
 
     @GetMapping("/")
     public String moveIndex(Model model) {
-        JSONObject result = apiService.GetMarketsOptions(LostarkApiKey);
         List<Items> data = itemService.getDatabase();
-
-        if (result != null)
-            model.addAttribute("result", result);
 
         model.addAttribute("data", data);
 
