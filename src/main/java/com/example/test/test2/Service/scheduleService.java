@@ -51,6 +51,7 @@ public class scheduleService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH: mm: ss");
         String formatedNow = now.format(formatter);
         System.out.println(formatedNow);
+
         System.out.println("DB 업데이트 스케줄러 작동 완료");
     }
 }
