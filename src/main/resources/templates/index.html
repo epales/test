@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +12,7 @@
     <div class="button">
         <button onclick="location.href='/stone'">돌 깎으러가기</button> <button onclick="location.href ='/'">새로고침</button>
     </div>
-    <div class = "table">
+    <div class = "table" style="border-style: solid; border-width: 1px; border-color: black;">
         <div class="left-side flex"></div>
         <div class="flex">
             <th:block th:if="${data != null}">
