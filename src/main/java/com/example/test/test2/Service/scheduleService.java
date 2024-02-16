@@ -48,7 +48,7 @@ public class scheduleService {
         }
 
         LocalTime now = LocalTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH: mm: ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         String formatedNow = now.format(formatter);
         System.out.println(formatedNow);
 

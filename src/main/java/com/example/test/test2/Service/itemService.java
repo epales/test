@@ -50,6 +50,11 @@ public class itemService {
         return itemsEntity;
     }
 
+    public List<Items> getDatabaseByCode(int code) {
+        List<Items> itemsEntity = itemsRepository.findBycode(code);
+        return itemsEntity;
+    }
+
     public int getDatabaseCount() {
         long count = itemsRepository.count();
         return (int) count;

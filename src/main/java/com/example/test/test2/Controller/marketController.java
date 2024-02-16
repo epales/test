@@ -36,30 +36,4 @@ public class marketController {
             return "/network";
         }
     }
-
-    // @PostMapping(value = "/api/markets/item")
-    // public String marketItem(@RequestParam (value ="code")String Name, Model
-    // model) throws InterruptedException{
-    // JSONArray result = itemService.getMarketOneItems(LostarkApiKey,50000, Name);
-
-    // model.addAttribute("result", result);
-
-    // return "/network";
-    // }
-
-    // @PostMapping("/api/save")
-    // public String SaveCode(@RequestParam (value ="code")String Code, Model model)
-    // throws InterruptedException{
-    // int alpha = itemService.getCategoryCode(Code);
-    // int Co = alpha;
-    // JSONArray result = itemService.getMarketOneItems(LostarkApiKey, alpha, Code);
-    // if(result != null){
-    // result.forEach((data) -> {
-    // ItemsDto itemsDto = new ItemsDto((JSONObject) data);
-    // itemsDto.setCategoriesCode(Co);
-    // itemService.save(itemsDto);
-    // });
-    // }
-    // return "/";
-    // }
 }

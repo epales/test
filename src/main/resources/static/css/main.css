@@ -2,25 +2,21 @@
     display: flex;
     align-items: center;
 }
-tr {
-    display: table-row;
-    vertical-align: inherit;
-    border-color: inherit;
+.left-side{
+    width: 120px;
 }
-table {
-    display: table;
-    border-collapse: separate;
-    box-sizing: border-box;
-    text-indent: initial;
-    border-spacing: 2px;
-    border-color: gray;
+.right-side{
+    width: 120px;
+}
+.button{
+    margin-top: 20px;
 }
 img{
-    height: 42px;
-    min-width: 42px;
-    width: 42px;
+    height: 30px;
+    width: 30px;
 }
 span{
+    font-size: 15px;
     font-weight: 500;
     color: chocolate;
 }
