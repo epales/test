@@ -1,0 +1,17 @@
+.settings{
+    display: flex;
+    
+}
+.leftBox, .middleBox, .rightBox{
+    border-style: solid;
+    border-radius: 3px;
+    border-color: black;
+    width: 33%;
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.selectAbility {
+    display: inline-flex;
+    text-align: center;
+}

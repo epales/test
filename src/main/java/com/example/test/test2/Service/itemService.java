@@ -17,6 +17,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,6 +60,10 @@ public class itemService {
     public int getDatabaseCount() {
         long count = itemsRepository.count();
         return (int) count;
+    }
+
+    public Page<Items> getItemList(Pageable pageable) {
+        return itemsRepository.findAll(pageable);
     }
 
     public JSONArray getMarketOneItems(String LostarkApiKey, int Id, int CategoryCode, String Name, String Grade) {

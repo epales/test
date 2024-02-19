@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>각인 맞추기</title>
+</head>
+<th:block th:replace=" ~{layout/header :: headFragment}"></th:block>
+<link rel="stylesheet" href="css/accessory.css">
+<body>
+    <div class = "settings">
+        <div class = "leftBox">
+            <p>~왼쪽~</p>
+            <div class = "selectAbility">
+                <p>각인 1</p>
+                <!-- DB에서 데이터 끌고오기 -->
+                <select class = "abilityBox">
+                    <option>원한</option>
+                </select>
+            </div>
+            <div>
+                <p>각인 2</p>
+            </div>
+            <div>
+                <p>각인 3</p>
+            </div> 
+            <div>
+                <p>각인 4</p>
+            </div>
+            <div>
+                <p>각인 5</p>
+            </div>
+            <div>
+                <p>각인 6</p>
+            </div>
+        </div>
+        <div class = "middleBox"> ~중간~ </div>
+        <div class = "rightBox"> ~오른쪽~ </div>
+    </div>
+    <div class = "result">
+
+    </div>
+</body>
+<th:block th:replace="~{layout/footer :: footerFragment}"></th:block>
