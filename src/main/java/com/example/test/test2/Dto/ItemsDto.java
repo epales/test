@@ -4,12 +4,10 @@ import org.json.simple.JSONObject;
 
 import com.example.test.test2.Domain.Items;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
 
 @Data
-@Entity
 public class ItemsDto {
 
     @Id
