@@ -6,30 +6,38 @@
     <title>메인</title>
 </head>
 <th:block th:replace=" ~{layout/header :: headFragment}"></th:block>
-<link rel="stylesheet" href="css/mainTest.css">
+<link rel="stylesheet" href="css/main.css">
 <body>
     <div class="button">
         <button onclick="location.href='/stone'">돌 깎으러가기</button> <button onclick="location.href ='/'">새로고침</button>
     </div>
     <div class = "table" style="border-style: solid; border-width: 1px; border-color: black;">
         <div class="left-side flex"></div>
-        <div class="flex table-responsive">
+        <div class="flex">
             <th:block th:if="${data != null}">
                 <h2>DB 데이터 목록</h2>
-                    <table class="table table-bordered table-hover">
+                <table>
                     <tr id = "body" th:each="item:${data}" >
                         <td id = "itemBox">
                             <img th:onclick = "move([[${item.code}]], [[${item.CategoriesCode}]])" th:src="${item.icon}"/>&nbsp;<span th:text="${item.name}"></span> : <span th:text="${item.CurrentMinPrice}"></span>
                         </td>
                     <tr>
                 </table>
-                <ul class="pagination">
-
-                </ul>
+                <a th:href="${data.first} ? '#' : @{/(page=${data.number - 1})}"> 이전 </a>
+                <span th:if="${nowPage != data.number}" th:text="${data.number + 1}"></span>
+                <a th:href="${data.last} ? '#' : @{/(page=${data.number + 1})}"> 다음 </a>
             </th:block>
         </div>
         <div class = "right-side flex"></div>
     </div>
 </body>
-<script type="text/javascript" src="/js/itemPage.js"></script>
+<script>
+    function move(img, category){
+        var url = "/detail/" + img;
+
+        if(category == 60000){
+            window.location.href = url;
+        }
+    } 
+</script>
 <th:block th:replace="~{layout/footer :: footerFragment}"></th:block>

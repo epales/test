@@ -3,13 +3,17 @@ package com.example.test.test2.Controller;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.test.test2.Domain.Items;
 import com.example.test.test2.Service.itemService;
@@ -22,32 +26,16 @@ public class pageController {
 
     private final itemService itemService;
 
-    @GetMapping("/test")
+    @GetMapping("/")
     public String moveIndex(Model model) {
 
         List<Items> data = itemService.getDatabase();
-
+        int count = itemService.getDatabaseCount();
+        System.out.println(count);
         model.addAttribute("data", data);
+        model.addAttribute("count", count);
 
-        return "/indexTest";
-    }
-
-    @GetMapping("/")
-    public String index(Model model,
-            @PageableDefault(page = 0, size = 5, sort = "code", direction = Sort.Direction.ASC) Pageable pageable) {
-
-        Page<Items> list = itemService.getItemList(pageable);
-
-        int nowPage = list.getPageable().getPageNumber() + 1;
-        int startPage = Math.max(nowPage, 1);
-        int endPage = Math.min(nowPage, list.getTotalPages());
-
-        model.addAttribute("data", list);
-        model.addAttribute("nowPage", nowPage);
-        model.addAttribute("startPage", startPage);
-        model.addAttribute("endPage", endPage);
-
-        return "index";
+        return "/index";
     }
 
     @GetMapping("/stone")
@@ -76,5 +64,24 @@ public class pageController {
     public String moveAccessory() {
 
         return "/accessory";
+    }
+
+    @ResponseBody
+    @GetMapping("/scroll/list")
+    public ResponseEntity<List<Items>> scrollList(@PageableDefault(page = 0, size = 10) Pageable pageable,
+            Model model) {
+
+        // Repository 에 Paging 정보를 요청하기 위해 Pageable 객체 생성 (page, size, 정렬 정보)
+        // Pageable sortedByIdDesc = PageRequest.of(pageable.getPageNumber(),
+        // pageable.getPageSize(),
+        // Sort.by("code").descending());
+        Page<Items> productListPage = itemService.getItemList(pageable);
+
+        // System.out.println("값1:" + sortedByIdDesc);
+        // System.out.println("값1:" + productListPage);
+        // System.out.println("값2:" + new ResponseEntity<>(productListPage.getContent(),
+        // HttpStatus.OK));
+        // List<Entity> 정보를 넘겨주기 위해 ResponseEntity 사용
+        return new ResponseEntity<>(productListPage.getContent(), HttpStatus.OK);
     }
 }

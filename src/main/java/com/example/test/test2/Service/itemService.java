@@ -21,6 +21,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.test.test2.Domain.Items;
 import com.example.test.test2.Dto.ItemsDto;
@@ -63,6 +65,7 @@ public class itemService {
     }
 
     public Page<Items> getItemList(Pageable pageable) {
+
         return itemsRepository.findAll(pageable);
     }
 
