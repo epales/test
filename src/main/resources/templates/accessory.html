@@ -15,23 +15,38 @@
                 <p>각인 1</p>
                 <!-- DB에서 데이터 끌고오기 -->
                 <select class = "abilityBox">
-                    <option>원한</option>
+                    <option th:each = "abil : ${abil}"><span th:text = ${abil.name}></span></option>
                 </select>
             </div>
-            <div>
+            <div class="selectAbility">
                 <p>각인 2</p>
+                <select class="abilityBox">
+                    <option th:each="abil : ${abil}"><span th:text=${abil.name}></span></option>
+                </select>
             </div>
-            <div>
+            <div class="selectAbility">
                 <p>각인 3</p>
+                <select class="abilityBox">
+                    <option th:each="abil : ${abil}"><span th:text=${abil.name}></span></option>
+                </select>
             </div> 
-            <div>
+            <div class="selectAbility">
                 <p>각인 4</p>
+                <select class="abilityBox">
+                    <option th:each="abil : ${abil}"><span th:text=${abil.name}></span></option>
+                </select>
             </div>
-            <div>
+            <div class="selectAbility">
                 <p>각인 5</p>
+                <select class="abilityBox">
+                    <option th:each="abil : ${abil}"><span th:text=${abil.name}></span></option>
+                </select>
             </div>
-            <div>
+            <div class="selectAbility">
                 <p>각인 6</p>
+                <select class="abilityBox">
+                    <option th:each="abil : ${abil}"><span th:text=${abil.name}></span></option>
+                </select>
             </div>
         </div>
         <div class = "middleBox"> ~중간~ </div>

@@ -3,9 +3,7 @@ package com.example.test.test2.Controller;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.test.test2.Domain.Ability;
 import com.example.test.test2.Domain.Items;
+import com.example.test.test2.Service.accessoryService;
 import com.example.test.test2.Service.itemService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,10 +25,10 @@ import lombok.RequiredArgsConstructor;
 public class pageController {
 
     private final itemService itemService;
+    private final accessoryService accessoryService;
 
     @GetMapping("/")
     public String moveIndex(Model model) {
-
         List<Items> data = itemService.getDatabase();
         int count = itemService.getDatabaseCount();
         System.out.println(count);
@@ -61,8 +61,11 @@ public class pageController {
     }
 
     @GetMapping("/accessory")
-    public String moveAccessory() {
+    public String moveAccessory(Model model) {
 
+        List<Ability> abil = accessoryService.getDatabase();
+
+        model.addAttribute("abil", abil);
         return "/accessory";
     }
 

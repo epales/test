@@ -36,12 +36,14 @@ public class itemService {
 
     private final ItemsRepository itemsRepository;
 
+    // DB에 저장하는 Service
     @Transactional
     public Items save(ItemsDto itemsDto) {
         Items itemsEntity = itemsRepository.save(itemsDto.toEntity());
         return itemsEntity;
     }
 
+    // DB에서 이름으로 조회후 items 테이블의 code 리턴
     public int getCategoryCode(String id) {
         Optional<Items> itemsEntity = itemsRepository.findByName(id);
         int code = itemsEntity.get().getCode();
