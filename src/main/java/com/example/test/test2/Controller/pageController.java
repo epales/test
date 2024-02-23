@@ -66,6 +66,7 @@ public class pageController {
         List<Ability> abil = accessoryService.getDatabase();
 
         model.addAttribute("abil", abil);
+        
         return "/accessory";
     }
 
