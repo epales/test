@@ -6,12 +6,18 @@
     <title>제작 재료 안내</title>
 </head>
 <th:block th:replace=" ~{layout/header :: headFragment}"></th:block>
+<link rel="stylesheet" href="../css/detail.css">
 <body>
-    <div th:each="item:${items}" >
-        <p>아이템 이름 : <span th:text ="${item.name}"></span></p>
-        <p>제작에 필요한 재료 : <span>가격 </span></p>
-        <p>판매 가격 : <span th:text="${item.CurrentMinPrice}"></p>
-        <p>순이익 (손해인지 이득인지) </p>
+    <div th:each="item:${items}" class = "craftItems">
+        <div class= "craftItems-img">
+            <img th:src="${item.icon}">
+        </div>
+        <p><span th:text="${item.name}"></p>
+        <p>현재 가격 : <span th:text="${item.CurrentMinPrice}"></p>
     </div>
+    <div th:each="main:${main}" th:if="${makeNumber} != null">
+        <p>판매 가격 : <span th:text="${main.CurrentMinPrice} * ${makeNumber}"></span></p>
+    </div>
+    <p>순이익 (손해인지 이득인지) </p>
 </body>
 <th:block th:replace="~{layout/footer :: footerFragment}"></th:block>

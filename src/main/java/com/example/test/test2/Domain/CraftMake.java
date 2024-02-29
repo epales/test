@@ -12,20 +12,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Items {
+public class CraftMake {
 
     @Id
     public int code;
 
-    public String name;
+    public int makeNumber;
 
-    public int currentMinPrice;
+    public int makePrice;
 
-    public String icon;
-
-    public int categoriesCode;
-
-    public String grade;
-
-    public int bundleCount;
 }

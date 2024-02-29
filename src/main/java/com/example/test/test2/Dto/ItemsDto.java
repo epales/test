@@ -23,6 +23,8 @@ public class ItemsDto {
 
     public String grade;
 
+    public int bundleCount;
+
     public ItemsDto(JSONObject object) {
         this.code = Integer.parseInt(object.get("Id").toString());
         this.name = object.get("Name").toString();
@@ -30,6 +32,7 @@ public class ItemsDto {
         this.icon = object.get("Icon").toString();
         this.categoriesCode = Integer.parseInt(object.get("categoryCode").toString());
         this.grade = object.get("Grade").toString();
+        this.bundleCount = Integer.parseInt(object.get("BundleCount").toString());
     }
 
     public Items toEntity() {
@@ -40,6 +43,7 @@ public class ItemsDto {
                 .icon(icon)
                 .categoriesCode(categoriesCode)
                 .grade(grade)
+                .bundleCount(bundleCount)
                 .build();
     }
 }

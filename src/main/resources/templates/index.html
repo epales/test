@@ -8,12 +8,12 @@
 <th:block th:replace=" ~{layout/header :: headFragment}"></th:block>
 <link rel="stylesheet" href="css/main.css">
 <body>
-    <div class="button">
+    <!-- <div class="button">
         <button onclick="location.href='/stone'">돌 깎으러가기</button> <button onclick="location.href ='/'">새로고침</button>
-    </div>
+    </div> -->
     <th:block th:if="${data != null}">
         <h2>DB 데이터 목록</h2>
-    </th:block>
+    
     <div class ="main">
         <div class="left-side side"></div>
         <div class="table flex" style="border-style: solid; border-width: 1px; border-color: black;">
@@ -27,6 +27,7 @@
     <div><p th:text="${count}"></p></div>
     <button class="prev" onclick="prevPage()">이전</button>
     <button class="next" onclick="nextPage()">다음</button>
+    </th:block>
 </body>
 <script th:inline="javascript" src="/js/itemPage.js"></script>
 <th:block th:replace="~{layout/footer :: footerFragment}"></th:block>

@@ -1,0 +1,14 @@
+.craftBox{
+    text-align: center;
+    display: inline-block;
+}
+button {
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+.craft {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
