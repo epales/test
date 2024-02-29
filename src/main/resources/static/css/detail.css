@@ -1,0 +1,9 @@
+.craftItems{
+    margin-top: 10px;
+    display: inline-block;
+}
+.craftItems-img{
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}

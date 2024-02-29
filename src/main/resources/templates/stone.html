@@ -1,34 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<th:block th:replace=" ~{layout/header :: headFragment}"></th:block>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>돌 깎는 노인</title>
-    <style>
-        button{ margin-right: 3px;
-                margin-left: 3px;}
-        .craft  { display: flex;
-             align-items: center;
-             margin-bottom: 8px;}
-    </style>
 </head>
+<th:block th:replace=" ~{layout/header :: headFragment}"></th:block>
+<link rel="stylesheet" href="css/stone.css">
 <body>
     <div class="table">
-        <div class="craft successPercent">
-            <p>세공확률 : <span class="percentage"></span></p>
-        </div>
-        <div class="craft ability1Set">
-        </div>
-        <div class="craft ability2Set">
-        </div>
-        <div class="craft ability3Set">
-        </div>
-        <div class="craft reset">
-        </div>
-        <div>
-            <button style="margin-top: 6px;" onclick="location.href='/'">메인으로 돌아가기</button>
+        <div class="craftBox">
+            <div class="craft successPercent">
+                <p>세공확률 : <span class="percentage"></span></p>
+            </div>
+            <div class="craft ability1Set">
+            </div>
+            <div class="craft ability2Set">
+            </div>
+            <div class="craft ability3Set">
+            </div>
+            <div class="craft reset">
+            </div>
+            <div>
+                <button style="margin-top: 6px;" onclick="location.href='/'">메인으로 돌아가기</button>
+            </div>
         </div>
     </div>
 </body>

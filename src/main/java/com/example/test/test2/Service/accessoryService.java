@@ -16,7 +16,8 @@ public class accessoryService {
     private final AbilityRepository abilityRepository;
 
     public List<Ability> getDatabase() {
-        List<Ability> abil = abilityRepository.findAll();
+
+        List<Ability> abil = abilityRepository.findByJobsNot("패널티");
 
         return abil;
     }

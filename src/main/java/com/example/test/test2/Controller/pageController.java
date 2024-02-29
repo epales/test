@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.test.test2.Domain.Ability;
+import com.example.test.test2.Domain.CraftMake;
 import com.example.test.test2.Domain.Items;
 import com.example.test.test2.Service.accessoryService;
 import com.example.test.test2.Service.itemService;
@@ -54,8 +55,19 @@ public class pageController {
     public String moveDetail(@PathVariable(name = "code") int id, Model model) {
 
         List<Items> items = itemService.getDatabaseByCode(id);
-
-        model.addAttribute("items", items);
+        List<Items> itemEntity = itemService.getCraftItemsListByName(id);
+        List<CraftMake> craftMake = itemService.getCraftMakeByCode(id);
+        System.out.println(craftMake);
+        if (!craftMake.isEmpty()) {
+            int price = craftMake.get(0).getMakePrice();
+            int makeNumber = craftMake.get(0).getMakeNumber();
+            model.addAttribute("price", price);
+            model.addAttribute("makeNumber", makeNumber);
+        } else {
+            model.addAttribute("makeNumber", 0);
+        }
+        model.addAttribute("main", items);
+        model.addAttribute("items", itemEntity);
 
         return "/detail";
     }
@@ -66,7 +78,13 @@ public class pageController {
         List<Ability> abil = accessoryService.getDatabase();
 
         model.addAttribute("abil", abil);
+
         return "/accessory";
+    }
+
+    @GetMapping("/auction")
+    public String moveAuction(Model model) {
+        return "/auction";
     }
 
     @ResponseBody

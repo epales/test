@@ -21,11 +21,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.test.test2.Domain.CraftItems;
+import com.example.test.test2.Domain.CraftMake;
 import com.example.test.test2.Domain.Items;
 import com.example.test.test2.Dto.ItemsDto;
+import com.example.test.test2.Repository.CraftItemsRepository;
+import com.example.test.test2.Repository.CraftMakeRepository;
 import com.example.test.test2.Repository.ItemsRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -35,6 +37,8 @@ import lombok.RequiredArgsConstructor;
 public class itemService {
 
     private final ItemsRepository itemsRepository;
+    private final CraftItemsRepository craftItemsRepository;
+    private final CraftMakeRepository craftMakeRepository;
 
     // DB에 저장하는 Service
     @Transactional
@@ -44,8 +48,8 @@ public class itemService {
     }
 
     // DB에서 이름으로 조회후 items 테이블의 code 리턴
-    public int getCategoryCode(String id) {
-        Optional<Items> itemsEntity = itemsRepository.findByName(id);
+    public int getCategoryCode(String name) {
+        Optional<Items> itemsEntity = itemsRepository.findByName(name);
         int code = itemsEntity.get().getCode();
         return code;
     }
@@ -61,6 +65,11 @@ public class itemService {
         return itemsEntity;
     }
 
+    public List<Items> getDatabaseByName(String name) {
+        List<Items> itemsEntity = itemsRepository.findListByName(name);
+        return itemsEntity;
+    }
+
     public int getDatabaseCount() {
         long count = itemsRepository.count();
         return (int) count;
@@ -69,6 +78,24 @@ public class itemService {
     public Page<Items> getItemList(Pageable pageable) {
 
         return itemsRepository.findAll(pageable);
+    }
+
+    public List<CraftMake> getCraftMakeByCode(int code) {
+        List<CraftMake> craftMake = craftMakeRepository.findAllByCode(code);
+
+        return craftMake;
+    }
+
+    public List<Items> getCraftItemsListByName(int code) {
+
+        List<CraftItems> craftItems = craftItemsRepository.findAllByCraftCode(code);
+        List<Items> itemsEntity = new ArrayList<Items>();
+
+        for (int i = 0; i < craftItems.size(); i++) {
+            itemsEntity.addAll(itemsRepository.findBycode(craftItems.get(i).getCode()));
+        }
+
+        return itemsEntity;
     }
 
     public JSONArray getMarketOneItems(String LostarkApiKey, int Id, int CategoryCode, String Name, String Grade) {
@@ -123,6 +150,7 @@ public class itemService {
                 jsonObject.put("Icon", ((JSONObject) data).get("Icon").toString());
                 jsonObject.put("categoryCode", CategoryCode);
                 jsonObject.put("Grade", ((JSONObject) data).get("Grade").toString());
+                jsonObject.put("BundleCount", ((JSONObject) data).get("BundleCount").toString());
             });
 
             JSONArray req_array = new JSONArray();

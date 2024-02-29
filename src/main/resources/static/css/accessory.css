@@ -12,6 +12,12 @@
     margin-right: 5px;
 }
 .selectAbility {
-    display: inline-flex;
+    display: flex;
+    align-items: center;
     text-align: center;
+    justify-content: center;
+}
+.box {
+    margin-left: 7px;
+    margin-bottom: 7px;
 }

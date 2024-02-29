@@ -1,8 +1,6 @@
 package com.example.test.test2.Domain;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,13 +12,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Ability {
+public class CraftMake {
 
     @Id
-    public String name;
-
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public int code;
 
-    public String jobs;
+    public int makeNumber;
+
+    public int makePrice;
+
 }

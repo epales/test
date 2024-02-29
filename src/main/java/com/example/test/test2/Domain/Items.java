@@ -26,4 +26,6 @@ public class Items {
     public int categoriesCode;
 
     public String grade;
+
+    public int bundleCount;
 }

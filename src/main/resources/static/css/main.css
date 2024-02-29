@@ -40,9 +40,10 @@
 }
 
 img{
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
     margin-right: 5px;
+    
     border-style: solid;
     border-width: 1px;
     border-color: black
@@ -54,10 +55,13 @@ span{
 }
 tr{
     width: 100%;
+    
 }
 th{
     font-size: 10px;
 }
 td{
+    align-items: center;
     font-size: 10px;
+    height: 30px;
 }
