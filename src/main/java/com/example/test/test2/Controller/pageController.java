@@ -105,4 +105,13 @@ public class pageController {
         // List<Entity> 정보를 넘겨주기 위해 ResponseEntity 사용
         return new ResponseEntity<>(productListPage.getContent(), HttpStatus.OK);
     }
+
+    @ResponseBody
+    @GetMapping("/access/list")
+    public ResponseEntity<List<Ability>> accessList() {
+
+        List<Ability> abil = accessoryService.getDatabase();
+
+        return new ResponseEntity<>(abil, HttpStatus.OK);
+    }
 }
