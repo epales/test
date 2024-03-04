@@ -8,6 +8,18 @@
 <th:block th:replace=" ~{layout/header :: headFragment}"></th:block>
 <body>
     <h2>경매 입찰가 계산</h2>
-    <audio> </audio>
+    <div>
+        <label for="거래가격">거래가격
+            <input type="number">
+            <input type="radio" name="calc" checked/>4인
+            <input type="radio" name="calc"/>8인
+        </label>
+    </div>
+    <div>
+        <button onclick="location.href='/calculate'">계산</button>
+    </div>
+    <div>
+        <p>입찰 가격</p>
+    </div>
 </body>
 <th:block th:replace="~{layout/footer :: footerFragment}"></th:block>
