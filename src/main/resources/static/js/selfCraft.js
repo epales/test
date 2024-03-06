@@ -1,5 +1,4 @@
 function success1(abil) {
-
     var ability = document.getElementsByClassName(abil);
     if (abil == "abil1") {
         if (firstStoneCount < 10) {
@@ -9,6 +8,7 @@ function success1(abil) {
             if (expectValue > 25) {
                 expectValue -= 10;
             }
+
         } else {
             alert('첫 번째의 각인을 모두 세공했습니다.');
             return;
@@ -30,9 +30,11 @@ function success1(abil) {
         if (thirdStoneCount < 10) {
             ability.item(thirdStoneCount).src = "img/Red.png";
             thirdStoneCount++;
+
             if (expectValue > 25) {
                 expectValue -= 10;
             }
+
         } else {
             alert('세 번째의 각인을 모두 세공했습니다.');
             return;
@@ -50,6 +52,7 @@ function fail1(abil) {
             if (expectValue < 75) {
                 expectValue += 10;
             }
+
         } else {
             alert('첫 번째의 각인을 모두 세공했습니다.');
             return;
@@ -58,9 +61,11 @@ function fail1(abil) {
         if (secondStoneCount < 10) {
             ability.item(secondStoneCount).src = "img/Gray.png";
             secondStoneCount++;
+
             if (expectValue < 75) {
                 expectValue += 10;
             }
+
         } else {
             alert('두 번째의 각인을 모두 세공했습니다.');
             return;
@@ -69,9 +74,11 @@ function fail1(abil) {
         if (thirdStoneCount < 10) {
             ability.item(thirdStoneCount).src = "img/Gray.png";
             thirdStoneCount++;
+
             if (expectValue < 75) {
                 expectValue += 10;
             }
+
         } else {
             alert('세 번째의 각인을 모두 세공했습니다.');
             return;
@@ -87,6 +94,7 @@ function success2(abil) {
         if (firstStoneCount < 10) {
             ability.item(firstStoneCount).src = "img/Blue.png";
             firstStoneCount++;
+
         } else {
             alert('첫 번째의 각인을 모두 세공했습니다.');
             return;
@@ -95,6 +103,7 @@ function success2(abil) {
         if (secondStoneCount < 10) {
             ability.item(secondStoneCount).src = "img/Blue.png";
             secondStoneCount++;
+
         } else {
             alert('두 번째의 각인을 모두 세공했습니다.');
             return;
@@ -103,6 +112,7 @@ function success2(abil) {
         if (thirdStoneCount < 10) {
             ability.item(thirdStoneCount).src = "img/Red.png";
             thirdStoneCount++;
+            
         } else {
             alert('세 번째의 각인을 모두 세공했습니다.');
             return;
@@ -163,22 +173,15 @@ function craft(abil) {
     }
     const randomNum = Math.floor(Math.random() * 100) + 1;
     //1. 클래스 인식해서 받아오고
-    console.log(abil)
     //2. 카운트 확인함 10개 다 채우면 확률세공 막거나 얼럿
-    console.log(expectValue + " : " + randomNum);
-
-    if (expectValue >= randomNum) {
-        success1(abil);
-        console.log("세공 성공! ^ v ^");
-    } else {
-        fail1(abil);
-        console.log("세공 실패! ㅠㅡㅠ");
-    }
-    console.log("현재 확률 : " + expectValue + "%");
-    percent();
     //3. 확률은 성공 시 -10% 실패 시 +10% 최대 75% 최소 25%
     //4. 모든 세공 완료 시 줄 당 성공 횟수 출력
-
+    if (expectValue >= randomNum) {
+        success1(abil);
+    } else {
+        fail1(abil);
+    }
+    percent();
 }
 
 function reset() {

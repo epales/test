@@ -28,6 +28,10 @@ public class scheduleService {
 
         List<Items> itemList = itemService.getDatabase();
 
+        LocalTime now;
+        DateTimeFormatter formatter;
+        String formatedNow;
+
         System.out.println("DB 업데이트 스케줄러 작동 시작");
 
         for (int i = 0; i < count; i++) {
@@ -40,18 +44,21 @@ public class scheduleService {
 
             if (resultJsonArray != null) {
                 resultJsonArray.forEach((data) -> {
-                    System.out.println(data);
                     ItemsDto itemsDto = new ItemsDto((JSONObject) data);
                     itemService.save(itemsDto);
                 });
+            } else {
+                now = LocalTime.now();
+                formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+                formatedNow = now.format(formatter);
+                System.out.println(formatedNow + " - 오류 작동 중지 ");
+                continue;
             }
         }
-
-        LocalTime now = LocalTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String formatedNow = now.format(formatter);
+        now = LocalTime.now();
+        formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        formatedNow = now.format(formatter);
         System.out.println(formatedNow);
-
         System.out.println("DB 업데이트 스케줄러 작동 완료");
     }
 

@@ -123,11 +123,13 @@ function addPage(page) {
 const articleList = document.getElementById('article-list');
 
 let page = 0;
-  
+
+var allPage = document.querySelector(".count");
+
 addPage(page);
     
 function nextPage() {
-  if (page < 2) {
+  if (page < (Math.round(allPage.textContent/10))) {
     articleList.removeChild(document.getElementById('article-page-'+ (page)));
     addPage(++page);
   }
