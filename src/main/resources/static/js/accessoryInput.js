@@ -4,6 +4,9 @@ var input3 = document.querySelector("#access_3");
 var input4 = document.querySelector("#access_4");
 var input5 = document.querySelector("#access_5");
 var input6 = document.querySelector("#access_6");
+var input7 = document.querySelector("#access_7");
+var input8 = document.querySelector("#access_8");
+
 
 var div1 = document.querySelector("#selectAbility1");
 var div2 = document.querySelector("#selectAbility2");
@@ -11,10 +14,14 @@ var div3 = document.querySelector("#selectAbility3");
 var div4 = document.querySelector("#selectAbility4");
 var div5 = document.querySelector("#selectAbility5");
 var div6 = document.querySelector("#selectAbility6");
+// 어빌리티 스톤
+var div7 = document.querySelector("#selectAbility7");
+var div8 = document.querySelector("#selectAbility8");
+var div9 = document.querySelector("#selectAbility9");
 
 var called = false;
 
-input1.addEventListener('click', () => {
+input1.addEventListener('focus', () => {
     if (!called) {
         callList(div1, input1);
         called = true;
@@ -24,7 +31,7 @@ input1.addEventListener('click', () => {
         called = true;
     }
 });
-input2.addEventListener('click', () => {
+input2.addEventListener('focus', () => {
     if (!called) {
         callList(div2, input2);
         called = true;
@@ -34,7 +41,7 @@ input2.addEventListener('click', () => {
         called = true;
     }
 });
-input3.addEventListener('click', () => {
+input3.addEventListener('focus', () => {
     if (!called) {
         callList(div3,input3);
         called = true;
@@ -44,7 +51,7 @@ input3.addEventListener('click', () => {
         called = true;
     }
 });
-input4.addEventListener('click', () => {
+input4.addEventListener('focus', () => {
     if (!called) {
         callList(div4,input4);
         called = true;
@@ -54,7 +61,7 @@ input4.addEventListener('click', () => {
         called = true;
     }
 });
-input5.addEventListener('click', () => {
+input5.addEventListener('focus', () => {
     if (!called) {
         callList(div5,input5);
         called = true;
@@ -64,7 +71,7 @@ input5.addEventListener('click', () => {
         called = true;
     }  
 });
-input6.addEventListener('click', () => {
+input6.addEventListener('focus', () => {
     if (!called) {
         callList(div6,input6);
         called = true;
@@ -129,6 +136,7 @@ function callList(div, input) {
 
     select.className = "abilityBox box " + div.id;
     select.size = 5;
+    select.style.zIndex = 2;
     
     $.ajax({
         type: 'GET',

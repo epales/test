@@ -32,7 +32,7 @@ public class pageController {
     public String moveIndex(Model model) {
         List<Items> data = itemService.getDatabase();
         int count = itemService.getDatabaseCount();
-        System.out.println(count);
+
         model.addAttribute("data", data);
         model.addAttribute("count", count);
 
@@ -84,7 +84,14 @@ public class pageController {
 
     @GetMapping("/auction")
     public String moveAuction(Model model) {
+
         return "/auction";
+    }
+
+    @GetMapping("/inchant")
+    public String moveInchant(Model model) {
+
+        return "/inchant";
     }
 
     @ResponseBody
