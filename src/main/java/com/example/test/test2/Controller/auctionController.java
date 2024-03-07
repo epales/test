@@ -10,7 +10,7 @@ public class auctionController {
     @GetMapping("/auction/calc")
     public String getMethodName(Model model) {
 
-        return "/auction";
+        return "auction";
     }
 
 }

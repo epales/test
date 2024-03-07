@@ -29,7 +29,7 @@ public class marketController {
             model.addAttribute("result", result);
             System.out.println("송신 완료 페이지 이동");
 
-            return "/network";
+            return "network";
         }
     }
 }
