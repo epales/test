@@ -36,19 +36,19 @@ public class pageController {
         model.addAttribute("data", data);
         model.addAttribute("count", count);
 
-        return "/index";
+        return "index";
     }
 
     @GetMapping("/stone")
     public String moveStone() {
 
-        return "/stone";
+        return "stone";
     }
 
     @GetMapping("/network")
     public String moveNetwork() {
 
-        return "/network";
+        return "network";
     }
 
     @GetMapping("/detail/{code}")
@@ -57,7 +57,6 @@ public class pageController {
         List<Items> items = itemService.getDatabaseByCode(id);
         List<Items> itemEntity = itemService.getCraftItemsListByName(id);
         List<CraftMake> craftMake = itemService.getCraftMakeByCode(id);
-        System.out.println(craftMake);
         if (!craftMake.isEmpty()) {
             int price = craftMake.get(0).getMakePrice();
             int makeNumber = craftMake.get(0).getMakeNumber();
@@ -69,7 +68,7 @@ public class pageController {
         model.addAttribute("main", items);
         model.addAttribute("items", itemEntity);
 
-        return "/detail";
+        return "detail";
     }
 
     @GetMapping("/accessory")
@@ -79,37 +78,27 @@ public class pageController {
 
         model.addAttribute("abil", abil);
 
-        return "/accessory";
+        return "accessory";
     }
 
     @GetMapping("/auction")
     public String moveAuction(Model model) {
 
-        return "/auction";
+        return "auction";
     }
 
     @GetMapping("/inchant")
     public String moveInchant(Model model) {
 
-        return "/inchant";
+        return "inchant";
     }
 
     @ResponseBody
     @GetMapping("/scroll/list")
     public ResponseEntity<List<Items>> scrollList(@PageableDefault(page = 0, size = 10) Pageable pageable,
             Model model) {
-
-        // Repository 에 Paging 정보를 요청하기 위해 Pageable 객체 생성 (page, size, 정렬 정보)
-        // Pageable sortedByIdDesc = PageRequest.of(pageable.getPageNumber(),
-        // pageable.getPageSize(),
-        // Sort.by("code").descending());
         Page<Items> productListPage = itemService.getItemList(pageable);
 
-        // System.out.println("값1:" + sortedByIdDesc);
-        // System.out.println("값1:" + productListPage);
-        // System.out.println("값2:" + new ResponseEntity<>(productListPage.getContent(),
-        // HttpStatus.OK));
-        // List<Entity> 정보를 넘겨주기 위해 ResponseEntity 사용
         return new ResponseEntity<>(productListPage.getContent(), HttpStatus.OK);
     }
 

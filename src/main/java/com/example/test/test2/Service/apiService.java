@@ -14,6 +14,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -151,6 +152,7 @@ public class apiService {
             httpURLConnection.setRequestProperty("accept", "application/json");
             httpURLConnection.setRequestProperty("content-Type", "application/json");
             httpURLConnection.setDoOutput(true);
+
             int result = httpURLConnection.getResponseCode();
 
             InputStream inputStream;
@@ -169,6 +171,88 @@ public class apiService {
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public JSONObject GetAccessory(String LostarkApiKey) {
+        try {
+            URL url = new URL("https://developer-lostark.game.onstove.com/auctions/items");
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestProperty("authorization", "Bearer " + LostarkApiKey);
+            httpURLConnection.setRequestProperty("accept", "application/json");
+            httpURLConnection.setRequestProperty("content-Type", "application/json");
+            httpURLConnection.setDoOutput(true);
+            int result = httpURLConnection.getResponseCode();
+
+            String parameter = "{\n"
+                    + "  \"ItemLevelMin\": \"1540\",\n"
+                    + "  \"ItemGradeQuality\": \"70\",\n"
+                    + "  \"SkillOptions\": \" [\"\n"
+                    + "{ \n"
+                    + "  \"FirstOption\": ,\n"
+                    + "  \"SecondOption\": ,\n"
+                    + "  \"MinValue\": ,\n"
+                    + "  \"MaxValue\": "
+                    + "} \n"
+                    + "], \n"
+                    + "}";
+
+            byte[] out = parameter.getBytes(StandardCharsets.UTF_8);
+
+            OutputStream stream = httpURLConnection.getOutputStream();
+            stream.write(out);
+            // {
+            // "ItemLevelMin": 0,
+            // "ItemLevelMax": 0,
+            // "ItemGradeQuality": null,
+            // "SkillOptions": [
+            // {
+            // "FirstOption": null,
+            // "SecondOption": null,
+            // "MinValue": null,
+            // "MaxValue": null
+            // }
+            // ],
+            // "EtcOptions": [
+            // {
+            // "FirstOption": null,
+            // "SecondOption": null,
+            // "MinValue": null,
+            // "MaxValue": null
+            // }
+            // ],
+            // "Sort": "BIDSTART_PRICE",
+            // "CategoryCode": 0,
+            // "CharacterClass": "string",
+            // "ItemTier": null,
+            // "ItemGrade": "string",
+            // "ItemName": "string",
+            // "PageNo": 0,
+            // "SortCondition": "ASC"
+            // }
+            InputStream inputStream;
+
+            if (result == 200) {
+                inputStream = httpURLConnection.getInputStream();
+            } else {
+                inputStream = httpURLConnection.getErrorStream();
+            }
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+
+            JSONParser parser = new JSONParser();
+            JSONObject object = (JSONObject) parser.parse(inputStreamReader);
+            httpURLConnection.disconnect();
+
+            return object;
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (ProtocolException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
             throw new RuntimeException(e);
         }
     }

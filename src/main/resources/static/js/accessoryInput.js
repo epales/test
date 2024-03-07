@@ -7,7 +7,6 @@ var input6 = document.querySelector("#access_6");
 var input7 = document.querySelector("#access_7");
 var input8 = document.querySelector("#access_8");
 
-
 var div1 = document.querySelector("#selectAbility1");
 var div2 = document.querySelector("#selectAbility2");
 var div3 = document.querySelector("#selectAbility3");

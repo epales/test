@@ -33,6 +33,18 @@ function getArticle(art) {
   p1.style.marginRight = '5px';
   b1.textContent = art.currentMinPrice;
 
+  // td3에 제작비용 추가
+  // 아이템 코드로 DB 조회 후 SUM(price) 값 입력 후 출력
+
+  // td4에 판매차익 추가
+  // 시세 - 수수료 (시세 * 0.05) - 제작 비용 출력
+
+  // td5에 이익 여부
+  // 판매차익 양수 = 이득, 음수 = 손해 출력
+  
+  // 제작 불가 아이템의 경우
+  // DB 아이템 코드 조회하여 NULL 일 경우 td3, td4, td5 에 제작 불가 출력
+  
   td1.className = "th-start column";
   td2.className = "th-right column";
   td3.className = "th-right column";

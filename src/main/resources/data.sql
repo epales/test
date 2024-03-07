@@ -1,6 +1,7 @@
 TRUNCATE TABLE ability;
 TRUNCATE TABLE craft_items;
 TRUNCATE TABLE craft_make;
+TRUNCATE TABLE items;
 
 INSERT ability VALUES('각성',"1", "공용")
                     ,('갈증',"2", "리퍼")
@@ -138,3 +139,45 @@ INSERT INTO craft_make(code, make_number, make_price) VALUES ("101072","3","30")
                                                              ("101291","3","30"),
                                                              ("101221","3","15"),
                                                              ("101231","3","15");
+
+INSERT INTO items VALUES (101063,	"정령의 회복약",	33,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/battle_item/battle_item_01_8.png",	60000,	"영웅",	1),
+                         (101151,	"암흑 수류탄",	15,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/battle_item/battle_item_01_47.png",	60000,	"희귀",	1),
+                         (101072,	"각성 물약",	31,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/battle_item/battle_item_01_10.png",	60000,	"영웅",	1),
+                         (101221,	"회오리 수류탄",	12,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/battle_item/battle_item_01_53.png",	60000,	"희귀",	1),
+                         (101191,	"성스러운 부적",	18,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/battle_item/battle_item_01_51.png",	60000,	"희귀",	1),
+                         (101231,	"점토 수류탄",	14,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/battle_item/battle_item_01_54.png",	60000,	"희귀",	1),
+                         (101291,	"아드로핀 물약",	37,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/battle_item/battle_item_01_72.png",	60000,	"영웅",	1),
+                         (101917,	"빛나는 정령의 회복약",	83,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/battle_item/battle_item_01_80.png",	60000,	"영웅",	1),
+                         (6861011,	"최상급 오레하 융화 재료",	55,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_11_29.png",	50000,	"영웅",	1),
+                         (6882101,	"들꽃",	60,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_8_46.png",	90000,	"일반",	100),
+                         (6882104,	"수줍은 들꽃",	4,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_4_14.png",	90000,	"고급",	10),
+                         (6882107,	"화사한 들꽃",	29,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_8_47.png",	90000,	"희귀",	10),
+                         (6882201,	"투박한 버섯",	32,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_8_56.png",	90000,	"일반",	100),
+                         (6882204,	"싱싱한 버섯",	4,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/all_quest/all_quest_02_101.png",	90000,	"고급",	10),
+                         (6882207,	"화려한 버섯",	8,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_8_57.png",	90000,	"희귀",	10),
+                         (6882301,	"목재",	74,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_3_252.png",	90000,	"일반",	100),
+                         (6882304,	"부드러운 목재",	16,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_3_253.png",	90000,	"고급",	10),
+                         (6882401,	"철광석",	27,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_3_243.png",	90000,	"일반",	100),
+                         (6882404,	"묵직한 철광석",	5,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_3_239.png",	90000,	"고급",	10),
+                         (6882704,	"희귀한 유물",	11,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_9_4.png",	90000,	"고급",	10),
+                         (6884307,	"튼튼한 목재",	74,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_4_4.png",	90000,	"희귀",	10),
+                         (6884407,	"단단한 철광석",	35,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_5_76.png",	90000,	"희귀",	10),
+                         (65200504,	"원한 각인서",	2795,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_9_24.png",	40000,	"전설",	1),
+                         (65201004,	"예리한 둔기 각인서",	1338,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_9_24.png",	40000,	"전설",	1),
+                         (65202804,	"저주받은 인형 각인서",	150, "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_9_24.png",	40000,	"전설",	1),
+                         (65203304,	"돌격대장 각인서",	1545,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_9_24.png",	40000,	"전설",	1),
+                         (65203904,	"아드레날린 각인서",	999, "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_9_24.png",	40000,	"전설",	1),
+                         (65213723,	"[브레이커] 수라의 길 각인서",	114,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/all_quest/all_quest_01_153.png",	40000,	"영웅",	1),
+                         (65213724,	"[브레이커] 수라의 길 각인서",	1980,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_9_24.png",	40000,	"전설",	1),
+                         (65214414,	"[소울이터] 만월의 집행자 각인서",	1200,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_9_24.png",	40000,	"전설",	1),
+                         (66102005,	"정제된 파괴강석",	18,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_11_15.png",	50000,	"일반",	10),
+                         (66102105,	"정제된 수호강석",	3,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_11_16.png",	50000,	"일반",	10),
+                         (66110223,	"경이로운 명예의 돌파석",	8,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_157.png",	50000,	"희귀",	1),
+                         (66110224,	"찬란한 명예의 돌파석",	42,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_11_17.png",	50000,	"희귀",	1),
+                         (66111121,	"태양의 은총",	36,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_161.png",50000,	"고급",	1),
+                         (66111122,	"태양의 축복",	110,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_162.png",50000,	"희귀",	1),
+                         (66111123,	"태양의 가호",	160,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_163.png",50000,	"영웅",	1),
+                         (66130131,	"명예의 파편 주머니(소)",	200,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_8_225.png",	50000,	"고급",	1),
+                         (66130132,	"명예의 파편 주머니(중)",	247,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_8_226.png",	50000,	"희귀",	1),
+                         (66130133,	"명예의 파편 주머니(대)",	349,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_8_227.png",	50000,	"영웅",	1),
+                         (66150010,	"에스더의 기운",	475000,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_10_81.png",	50000,	"에스더",	1)
