@@ -22,4 +22,10 @@ public class accessoryService {
         return abil;
     }
 
+    public List<Ability> getDatabaseByName(String name) {
+
+        List<Ability> abil = abilityRepository.findByNameContains(name);
+
+        return abil;
+    }
 }

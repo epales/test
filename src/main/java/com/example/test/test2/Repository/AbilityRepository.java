@@ -9,4 +9,6 @@ import com.example.test.test2.Domain.Ability;
 public interface AbilityRepository extends JpaRepository<Ability, String> {
 
     List<Ability> findByJobsNot(String jobs);
+
+    List<Ability> findByNameContains(String name);
 }

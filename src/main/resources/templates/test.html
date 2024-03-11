@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>각인 맞추기</title>
+</head>
+<th:block th:replace=" ~{layout/header :: headFragment}"></th:block>
+<link rel="stylesheet" href="css/test.css?after">
+<body id="body">
+    <div class="combobox combobox-list">
+        <div class="group">
+            <input id="cb1-input" class="cb_edit" type="text" role="combobox" aria-controls="cb1-listbox" placeholder="각인 1">
+            <select id="op1-select">
+                <option selected>미사용</option>
+                <option>+15</option>
+                <option>+10</option>
+                <option>+5</option>
+            </select>
+        </div>
+        <div class="group">
+            <input id="cb2-input" class="cb_edit" type="text" role="combobox" aria-controls="cb1-listbox" placeholder="각인 2">
+            <select id="op2-select">
+                <option selected>미사용</option>
+                <option>+15</option>
+                <option>+10</option>
+                <option>+5</option>
+            </select>
+        </div>
+        <div class="group">
+            <input id="cb3-input" class="cb_edit" type="text" role="combobox" aria-controls="cb1-listbox" placeholder="각인 3">
+            <select id="op3-select">
+                <option selected>미사용</option>
+                <option>+15</option>
+                <option>+10</option>
+                <option>+5</option>
+            </select>
+        </div>
+        <div class="group">
+            <input id="cb4-input" class="cb_edit" type="text" role="combobox" aria-controls="cb1-listbox" placeholder="각인 4">
+            <select id="op4-select">
+                <option selected>미사용</option>
+                <option>+15</option>
+                <option>+10</option>
+                <option>+5</option>
+            </select>
+        </div>
+        <div class="group">
+            <input id="cb5-input" class="cb_edit" type="text" role="combobox" aria-controls="cb1-listbox" placeholder="각인 5">
+            <select id="op5-select">
+                <option selected>미사용</option>
+                <option>+15</option>
+                <option>+10</option>
+                <option>+5</option>
+            </select>
+        </div>
+        <div class="group">
+            <input id="cb6-input" class="cb_edit" type="text" role="combobox" aria-controls="cb1-listbox" placeholder="각인 6">
+            <select id="op6-select">
+                <option selected>미사용</option>
+                <option>+15</option>
+                <option>+10</option>
+                <option>+5</option>
+            </select>
+        </div>
+
+        <ul id="cb1-listbox" role="listbox" aria-label="States">
+            <!-- <li th:each="abil : ${abil}" th:text ="${abil.name}" role="option"></li> -->
+        </ul>
+    </div>
+</body>
+<script type="text/javascript" src="/js/test.js"></script>
+
+<th:block th:replace="~{layout/footer :: footerFragment}"></th:block>

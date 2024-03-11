@@ -7,7 +7,7 @@
 </head>
 <th:block th:replace=" ~{layout/header :: headFragment}"></th:block>
 <link rel="stylesheet" href="../css/detail.css">
-<body>
+<body id="body">
     <div th:each="item:${items}" class = "craftItems">
         <div class= "craftItems-img">
             <img th:src="${item.icon}">
