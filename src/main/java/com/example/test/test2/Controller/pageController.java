@@ -57,6 +57,7 @@ public class pageController {
         List<Items> items = itemService.getDatabaseByCode(id);
         List<Items> itemEntity = itemService.getCraftItemsListByName(id);
         List<CraftMake> craftMake = itemService.getCraftMakeByCode(id);
+
         if (!craftMake.isEmpty()) {
             int price = craftMake.get(0).getMakePrice();
             int makeNumber = craftMake.get(0).getMakeNumber();
@@ -65,6 +66,7 @@ public class pageController {
         } else {
             model.addAttribute("makeNumber", 0);
         }
+
         model.addAttribute("main", items);
         model.addAttribute("items", itemEntity);
 
@@ -78,7 +80,7 @@ public class pageController {
 
         model.addAttribute("abil", abil);
 
-        return "accessory";
+        return "test";
     }
 
     @GetMapping("/auction")
@@ -102,12 +104,4 @@ public class pageController {
         return new ResponseEntity<>(productListPage.getContent(), HttpStatus.OK);
     }
 
-    @ResponseBody
-    @GetMapping("/access/list")
-    public ResponseEntity<List<Ability>> accessList() {
-
-        List<Ability> abil = accessoryService.getDatabase();
-
-        return new ResponseEntity<>(abil, HttpStatus.OK);
-    }
 }

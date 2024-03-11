@@ -7,13 +7,15 @@
 </head>
 <th:block th:replace=" ~{layout/header :: headFragment}"></th:block>
 <link rel="stylesheet" href="css/accessory.css">
-
 <body>
     <div class = "settings">
         <div class = "leftBox">
             <p>~왼쪽~</p>
             <div id ="selectAbility1" class = "selectAbility">
-                <input id="access_1" class = "abilityBox box" type="text" placeholder="각인 1"/>
+                <input id="access_1" list="list1" class = "abilityBox box" type="text" placeholder="각인 1"/>
+                <datalist id="list1" class = "abilityBox box">
+                    <option th:each ="abil : ${abil}" th:value="${abil.name}"></option>
+                </datalist>
                 <select class = "abilitylevel box">
                     <option>
                         <p>미사용</p>
@@ -30,7 +32,12 @@
                 </select>
             </div>
             <div id ="selectAbility2" class="selectAbility">
-                <input id="access_2"class="abilityBox box" type="text" placeholder="각인 2" />
+                <label>
+                    <input id="access_2" list="list" class="abilityBox box" type="text" placeholder="각인 2" />
+                    <datalist id="list" class="abilityBox box">
+                        <option th:each="abil : ${abil}" th:value="${abil.name}"></option>
+                    </datalist>
+                </label>
                 <select class="abilitylevel box">
                     <option>
                         <p>미사용</p>
@@ -47,7 +54,12 @@
                 </select>
             </div>
             <div id ="selectAbility3" class="selectAbility">
-                <input id="access_3" class="abilityBox box" type="text" placeholder="각인 3" />
+                <label>
+                    <input id="access_3" list="list" class="abilityBox box" type="text" placeholder="각인 3" />
+                    <datalist id="list" class="abilityBox box">
+                        <option th:each="abil : ${abil}" th:value="${abil.name}"></option>
+                    </datalist>
+                </label>
                 <select class="abilitylevel box">
                     <option>
                         <p>미사용</p>
@@ -64,7 +76,12 @@
                 </select>
             </div> 
             <div id ="selectAbility4" class="selectAbility">
-                <input id="access_4" class="abilityBox box" type="text" placeholder="각인 4" />
+                <label>
+                    <input id="access_4" list="list" class="abilityBox box" type="text" placeholder="각인 4" />
+                    <datalist id="list" class="abilityBox box">
+                        <option th:each="abil : ${abil}" th:value="${abil.name}"></option>
+                    </datalist>
+                </label>
                 <select class="abilitylevel box">
                     <option>
                         <p>미사용</p>
@@ -81,7 +98,12 @@
                 </select>
             </div>
             <div id ="selectAbility5" class="selectAbility">
-                <input id="access_5" class="abilityBox box" type="text" placeholder="각인 5" />
+                <label>
+                    <input id="access_5" list="list" class="abilityBox box" type="text" placeholder="각인 5" />
+                    <datalist id="list" class="abilityBox box">
+                        <option th:each="abil : ${abil}" th:value="${abil.name}"></option>
+                    </datalist>
+                </label>
                 <select class="abilitylevel box">
                     <option>
                         <p>미사용</p>
@@ -98,7 +120,12 @@
                 </select>
             </div>
             <div id ="selectAbility6" class="selectAbility">
-                <input id="access_6" class="abilityBox box" type="text" placeholder="각인 6" />
+                <label>
+                    <input id="access_6" list="list" class="abilityBox box" type="text" placeholder="각인 6" />
+                    <datalist id="list" class="abilityBox box">
+                        <option th:each="abil : ${abil}" th:value="${abil.name}"></option>
+                    </datalist>
+                </label>
                 <select class="abilitylevel box">
                     <option>
                         <p>미사용</p>
@@ -118,13 +145,29 @@
         <div class = "middleBox"> 
             <p>~중간~</p>
             <div id="selectAbility7" class="selectAbility">
-                <input id="access_7" class="abilityBox box" type="text" placeholder="어빌리티 스톤 각인 1" />
+                <label>
+                    <input id="access_7" list="list" class="abilityBox box" type="text" placeholder="어빌리티 스톤 각인 1" />
+                    <datalist id="list" class="abilityBox box">
+                        <option th:each="abil : ${abil}" th:value="${abil.name}"></option>
+                    </datalist>
+                </label>
                 <input type="number" class="abilityBox box"/>
             </div>
             <div id="selectAbility8" class="selectAbility">
-                <input id="access_8" class="abilityBox box" type="text" placeholder="어빌리티 스톤 각인 2" />
+                <label>
+                    <input id="access_8" list="list" class="abilityBox box" type="text" placeholder="어빌리티 스톤 각인 2" />
+                    <datalist id="list" class="abilityBox box">
+                        <option th:each="abil : ${abil}" th:value="${abil.name}"></option>
+                    </datalist>
+                </label>
                 <label>
                     <input type="number" class="abilityBox box"/>
+                </label>
+            </div>
+            <div id="selectAbility9" class="selectAbility">
+                <input id="access_9" class="abilityBox box" type="text" placeholder="어빌리티 스톤 각인 3" />
+                <label>
+                    <input type="number" class="abilityBox box" />
                 </label>
             </div>
         </div>
