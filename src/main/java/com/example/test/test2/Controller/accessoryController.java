@@ -22,11 +22,20 @@ public class accessoryController {
     private final accessoryService accessoryService;
 
     @ResponseBody
+    @GetMapping("/access/list")
+    public ResponseEntity<List<Ability>> callAllAbilList(Model model) {
+        List<Ability> abil;
+        abil = accessoryService.getDatabase();
+        
+        return new ResponseEntity<>(abil, HttpStatus.OK);
+    }
+
+    @ResponseBody
     @GetMapping("/access/list/{name}")
     public ResponseEntity<List<Ability>> callAbilList(@PathVariable(name = "name") String name, Model model) {
-
-        List<Ability> abil = accessoryService.getDatabaseByName(name);
-
+        List<Ability> abil;
+        abil = accessoryService.getDatabaseByName(name);
+        
         return new ResponseEntity<>(abil, HttpStatus.OK);
     }
 }
