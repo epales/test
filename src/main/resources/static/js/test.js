@@ -6,6 +6,9 @@ var input3 = document.querySelector("#cb3-input");
 var input4 = document.querySelector("#cb4-input");
 var input5 = document.querySelector("#cb5-input");
 var input6 = document.querySelector("#cb6-input");
+var input7 = document.querySelector("#cb7-input");
+var input8 = document.querySelector("#cb8-input");
+var input9 = document.querySelector("#cb9-input");
 
 var b = document.querySelector("#cb1-listbox");
 
@@ -15,6 +18,9 @@ var bool3 = Boolean(false);
 var bool4 = Boolean(false);
 var bool5 = Boolean(false);
 var bool6 = Boolean(false);
+var bool7 = Boolean(false);
+var bool8 = Boolean(false);
+var bool9 = Boolean(false);
 
 input1.addEventListener('focus', () => {
     b.style.top = '28px';
@@ -52,6 +58,24 @@ input6.addEventListener('focus', () => {
     bool6 = true;
     searchAllAbil();
 })
+input7.addEventListener('focus', () => {
+    b.style.top = '220px';
+    b.style.display = "block";
+    bool7 = true;
+    searchAllStoneAbil();
+})
+input8.addEventListener('focus', () => {
+    b.style.top = '252px';
+    b.style.display = "block";
+    bool8 = true;
+    searchAllStoneAbil();
+})
+input9.addEventListener('focus', () => {
+    b.style.top = '284px';
+    b.style.display = "block";
+    bool9 = true;
+    searchAllStoneAbil();
+})
 
 input1.addEventListener('blur', () => {
     b.style.display = "none";
@@ -76,6 +100,18 @@ input5.addEventListener('blur', () => {
 input6.addEventListener('blur', () => {
     b.style.display = "none";
     bool6 = false;
+})
+input7.addEventListener('blur', () => {
+    b.style.display = "none";
+    bool7 = false;
+})
+input8.addEventListener('blur', () => {
+    b.style.display = "none";
+    bool8 = false;
+})
+input9.addEventListener('blur', () => {
+    b.style.display = "none";
+    bool9 = false;
 })
 
 input1.addEventListener('input', () => {
@@ -120,10 +156,60 @@ input6.addEventListener('input', () => {
     }
     searchAbil(input6.value);
 })
-
+input7.addEventListener('input', () => {
+    
+    if (b.hasChildNodes()) {
+        b.replaceChildren();
+    }
+    searchStoneAbil(input7.value);
+})
+input8.addEventListener('input', () => {
+    
+    if (b.hasChildNodes()) {
+        b.replaceChildren();
+    }
+    searchStoneAbil(input8.value);
+})
+input9.addEventListener('input', () => {
+    
+    if (b.hasChildNodes()) {
+        b.replaceChildren();
+    }
+    searchStoneAbil(input9.value);
+})
 function searchAbil(word) {
     $.ajax({
         url: '/access/list/' + word,
+        type: "GET",
+        dataType: 'json',
+        data: { name: name }	// 검색 키워드
+    }).done(function (result) { 	// 성공
+        if (result.length == 0) {
+          return;
+        }
+        for (var i = 0; i < result.length; i++){
+            searchAbil1(result[i]);
+        }
+    });
+}
+function searchAllStoneAbil() {
+    $.ajax({
+        url: '/access/list/stone',
+        type: "GET",
+        dataType: 'json',
+        data: { name: name }	// 검색 키워드
+    }).done(function (result) { 	// 성공
+        if (result.length == 0) {
+          return;
+        }
+        for (var i = 0; i < result.length; i++){
+            searchAbil1(result[i]);
+        }
+    });
+}
+function searchStoneAbil(word) {
+    $.ajax({
+        url: '/access/list/stone/' + word,
         type: "GET",
         dataType: 'json',
         data: { name: name }	// 검색 키워드

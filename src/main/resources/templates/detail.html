@@ -8,16 +8,75 @@
 <th:block th:replace=" ~{layout/header :: headFragment}"></th:block>
 <link rel="stylesheet" href="../css/detail.css">
 <body id="body">
-    <div th:each="item:${items}" class = "craftItems">
-        <div class= "craftItems-img">
-            <img th:src="${item.icon}">
-        </div>
-        <p><span th:text="${item.name}"></p>
-        <p>현재 가격 : <span th:text="${item.CurrentMinPrice}"></p>
-    </div>
+    <table  class = "craftItems">
+        <thead>
+            <tr>
+                <th>
+                    <p>재료</p>
+                </th>
+                <th>
+                    <p>필요개수</p>
+                </th>
+                <th>
+                    <p>판매단위</p>
+                </th>
+                <th>
+                    <p>시세</p>
+                </th>
+                <th>
+                    <p>단가</p>
+                </th>
+                <th>
+                    <p>합계</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody style="box-sizing: inherit;">
+            <tr th:each="item , i :${items}">
+                <td>
+                    <div class="craftItems-img">
+                        <img th:src="${item.icon}"></img>
+                        <p th:text="${item.name}"></p>
+                    </div>
+                </td>
+                <td>
+                    <div class="craftItems-img">
+                        <p th:text="${craftItems[i.index].number}"></p>
+                    </div>
+                </td>
+                <td>
+                    <div class="craftItems-img">
+                        <p th:text="${item.bundleCount}"></p>
+                    </div>
+                </td>
+                <td>
+                    <div class="craftItems-img">
+                        <p th:text="${item.CurrentMinPrice}"></p>
+                    </div>
+                </td>
+                <td>
+                    <div class="craftItems-img">
+                        <p th:text="${item.CurrentMinPrice} / ${item.bundleCount}"></p>
+                    </div>
+                </td>
+               
+                <td><div class="craftItems-img">
+                    <p th:text="${craftPrice[i.index]}"></p>
+                </div>
+                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <div th:each="main:${main}" th:if="${makeNumber} != null">
-        <p>판매 가격 : <span th:text="${main.CurrentMinPrice} * ${makeNumber}"></span></p>
+        <div>
+            <p>제작 가격 : <span th:text="${craftPriceAdd}"></p>
+        </div>
+        <div>
+            <p>판매 가격 : <span th:text="${main.CurrentMinPrice} * ${makeNumber}"></span></p>
+        </div>
+    
+        <p>순이익 : <span th:text="${main.CurrentMinPrice} * ${makeNumber} - ${craftPriceAdd}"></span></p>
     </div>
-    <p>순이익 (손해인지 이득인지) </p>
 </body>
 <th:block th:replace="~{layout/footer :: footerFragment}"></th:block>

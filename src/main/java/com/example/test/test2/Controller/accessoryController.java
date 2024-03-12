@@ -26,7 +26,7 @@ public class accessoryController {
     public ResponseEntity<List<Ability>> callAllAbilList(Model model) {
         List<Ability> abil;
         abil = accessoryService.getDatabase();
-        
+
         return new ResponseEntity<>(abil, HttpStatus.OK);
     }
 
@@ -35,7 +35,25 @@ public class accessoryController {
     public ResponseEntity<List<Ability>> callAbilList(@PathVariable(name = "name") String name, Model model) {
         List<Ability> abil;
         abil = accessoryService.getDatabaseByName(name);
-        
+
+        return new ResponseEntity<>(abil, HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @GetMapping("/access/list/stone")
+    public ResponseEntity<List<Ability>> callAllStoneAbilList(Model model) {
+        List<Ability> abil;
+        abil = accessoryService.getAllDatabaseByJobs();
+
+        return new ResponseEntity<>(abil, HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @GetMapping("/access/list/stone/{name}")
+    public ResponseEntity<List<Ability>> callStoneAbilList(@PathVariable(name = "name") String name, Model model) {
+        List<Ability> abil;
+        abil = accessoryService.getDatabaseByJobs(name);
+
         return new ResponseEntity<>(abil, HttpStatus.OK);
     }
 }

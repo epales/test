@@ -10,5 +10,9 @@ public interface AbilityRepository extends JpaRepository<Ability, String> {
 
     List<Ability> findByJobsNot(String jobs);
 
+    List<Ability> findByJobsAndNameContains(String jobs, String name);
+
+    List<Ability> findByJobs(String jobs);
+
     List<Ability> findByNameContains(String name);
 }

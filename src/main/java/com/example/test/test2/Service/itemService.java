@@ -86,7 +86,14 @@ public class itemService {
         return craftMake;
     }
 
-    public List<Items> getCraftItemsListByName(int code) {
+    public List<CraftItems> getCraftItemsByCode(int code) {
+        List<CraftItems> craftItems = craftItemsRepository.findAllByCraftCode(code);
+
+        return craftItems;
+
+    }
+
+    public List<Items> getItemsListByName(int code) {
 
         List<CraftItems> craftItems = craftItemsRepository.findAllByCraftCode(code);
         List<Items> itemsEntity = new ArrayList<Items>();
@@ -143,7 +150,6 @@ public class itemService {
             JSONObject jsonObject = new JSONObject();
 
             resultJsonArray.forEach((data) -> {
-
                 jsonObject.put("Id", ((JSONObject) data).get("Id"));
                 jsonObject.put("Name", ((JSONObject) data).get("Name").toString());
                 jsonObject.put("CurrentMinPrice", ((JSONObject) data).get("CurrentMinPrice").toString());
