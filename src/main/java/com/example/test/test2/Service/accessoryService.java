@@ -28,4 +28,18 @@ public class accessoryService {
 
         return abil;
     }
+
+    public List<Ability> getAllDatabaseByJobs() {
+
+        List<Ability> abil = abilityRepository.findByJobs("공용");
+
+        return abil;
+    }
+
+    public List<Ability> getDatabaseByJobs(String name) {
+
+        List<Ability> abil = abilityRepository.findByJobsAndNameContains("공용", name);
+
+        return abil;
+    }
 }

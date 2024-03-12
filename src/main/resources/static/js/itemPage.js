@@ -4,7 +4,7 @@ function getPageId(n) {
     return 'article-page-' + n;
 }
   
-function getArticle(art) {
+function getArticle(item, price, sonik, YN) {
   const tr = document.createElement('tr');
   const td1 = document.createElement("td");
   const td2 = document.createElement("td");
@@ -13,26 +13,46 @@ function getArticle(art) {
   const td5 = document.createElement("td");
   const img = document.createElement("img");
   const p1 = document.createElement("p");
-  const b1 = document.createElement("b");
   
-  const span1 = document.createElement("span");
+  const b1 = document.createElement("b");
+  const b2 = document.createElement("b");
+  const b3 = document.createElement("b");
+  const b4 = document.createElement("b");
 
   tr.id = "body";
   
-  img.src = art.icon;
+  img.src = item.icon;
   img.className = "imageClass";
   img.style.width = '20px';
   img.style.height = '20px';
   img.addEventListener('click', () => {
-    move(art.code,art.categoriesCode);
+    move(item.code,item.categoriesCode);
   })
 
   td2.className="imageBlock";
   
-  p1.textContent = art.name;
+  p1.textContent = item.name;
   p1.style.marginRight = '5px';
-  b1.textContent = art.currentMinPrice;
 
+  b1.textContent = item.currentMinPrice;
+
+  if (YN != 0) {
+    b2.textContent = price;
+    b3.textContent = sonik;
+    if (sonik > 0) {
+      b4.textContent = "이득";
+    } else {
+      b4.textContent = "손해";
+    }
+  } else {
+    b2.textContent = "제작 불가";
+    b3.textContent = "제작 불가";
+    b4.textContent = "제작 불가";
+  }
+  
+  b2.style.marginRight = '5px';
+  
+  
   // td3에 제작비용 추가
   // 아이템 코드로 DB 조회 후 SUM(price) 값 입력 후 출력
 
@@ -60,8 +80,9 @@ function getArticle(art) {
   td1.appendChild(img);
   td1.appendChild(p1);
   td2.appendChild(b1);
-  td3.appendChild(span1);
-  
+  td3.appendChild(b2);
+  td4.appendChild(b3);
+  td5.appendChild(b4);
 
   return tr;
 }
@@ -112,23 +133,35 @@ function addPage(page) {
         if (result.length == 0) {
           return;
         }
-        const pageElement = document.createElement('table');
-        const thead = document.createElement('thead');
-        const tbody = document.createElement('tbody');
+
+        $.ajax({
+          type: 'GET',
+          url: '/scroll/list/sonik',
+          data: {
+            page: page, // current Page
+            size: articlesPerPageSize, // max page size
+          },
+          dataType: 'json',
+        }).done(function (price) {
+
+          const pageElement = document.createElement('table');
+          const thead = document.createElement('thead');
+          const tbody = document.createElement('tbody');
         
-        pageElement.id = getPageId(page);
-        pageElement.className = 'table';
+          pageElement.id = getPageId(page);
+          pageElement.className = 'table';
 
-        pageElement.appendChild(thead);
-        pageElement.appendChild(tbody);
+          pageElement.appendChild(thead);
+          pageElement.appendChild(tbody);
 
-        thead.appendChild(getTableHead());
-        
+          thead.appendChild(getTableHead());
 
-        for (var i = 0; i < result.length; i++) {
-          tbody.appendChild(getArticle(result[i]));
-        }
-        articleList.appendChild(pageElement);
+          for (var i = 0; i < result.length; i++) {
+            console.log(price[i][0]);
+            tbody.appendChild(getArticle(result[i], price[i][0], price[i][1], price[i][2] ));
+          }
+          articleList.appendChild(pageElement);
+        });
     });
 }
      

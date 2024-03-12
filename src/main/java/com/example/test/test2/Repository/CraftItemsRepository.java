@@ -8,4 +8,5 @@ import java.util.List;
 public interface CraftItemsRepository extends JpaRepository<CraftItems, Integer> {
 
     List<CraftItems> findAllByCraftCode(int craftCode);
+
 }

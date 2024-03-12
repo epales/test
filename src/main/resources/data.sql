@@ -130,7 +130,9 @@ INSERT INTO craft_items(seq, code, craft_code, number) VALUES (seq,"6882201","10
                                                               (seq,"6882401","101231","5"),
                                                               (seq,"6882201","101231","24"),
                                                               (seq,"6882204","101231","12"),
-                                                              (seq,"6882207","101231","3");
+                                                              (seq,"6882207","101231","3"),
+                                                              (seq,"101063","101917","3"),
+                                                              (seq,"6882107","101917","8");                                                              ;
 
 INSERT INTO craft_make(code, make_number, make_price) VALUES ("101072","3","30"),
                                                              ("101063","3","30"),
@@ -138,7 +140,8 @@ INSERT INTO craft_make(code, make_number, make_price) VALUES ("101072","3","30")
                                                              ("101191","3","15"),
                                                              ("101291","3","30"),
                                                              ("101221","3","15"),
-                                                             ("101231","3","15");
+                                                             ("101231","3","15"),
+                                                             ("101917","2","30");
 
 INSERT INTO items(code, name, current_min_price, icon, categories_code, grade, bundle_count) VALUES (101063,	"정령의 회복약",	33,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/battle_item/battle_item_01_8.png",	60000,	"영웅",	1),
                                                                                                     (101151,	"암흑 수류탄",	15,	"https://cdn-lostark.game.onstove.com/efui_iconatlas/battle_item/battle_item_01_47.png",	60000,	"희귀",	1),
